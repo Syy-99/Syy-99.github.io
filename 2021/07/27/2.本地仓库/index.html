@@ -255,16 +255,21 @@
               </p>
             
             <div class="markdown-body">
-              <h1 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h1><h2 id="仓库版本控制"><a href="#仓库版本控制" class="headerlink" title="仓库版本控制"></a>仓库版本控制</h2><ul>
+              <h1>本地仓库</h1>
+<h2 id="仓库版本控制">仓库版本控制</h2>
+<ul>
 <li><code>git status</code>：查看本地仓库状态</li>
 <li><code>git diff</code>：查看仓库和之前版本的区别</li>
-<li><code>git log</code>：显示从最近的最远的提交日志<ul>
+<li><code>git log</code>：显示从最近的最远的提交日志
+<ul>
 <li><code>--grapt</code>：显示分支合并图</li>
 <li><code>--pretty=oneline</code>：简化日志信息，将每个提交放在一行显示，<strong>查看的提交数很大时非常有用</strong></li>
 </ul>
 </li>
-<li><code>git reset --hard xxx</code>：回退仓库版本xxx<ul>
-<li><code>xxx</code><ul>
+<li><code>git reset --hard xxx</code>：回退仓库版本xxx
+<ul>
+<li><code>xxx</code>
+<ul>
 <li>Git中用<code>head</code>表示当前版本，上个版本是<code>head^</code>，上上个版本是<code>head^^</code>,也可用<code>head~10</code>来表示上10个版本</li>
 <li>直接用<code>git log</code>中提交<code>commit id（版本号）</code>前几位</li>
 </ul>
@@ -273,35 +278,43 @@
 </li>
 <li><code>git reflog</code>：记录使用的每一次命令</li>
 </ul>
-<h2 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h2><ul>
-<li>==工作区==：就是你在电脑里能看到的目录</li>
-<li>==版本库==：工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库<ul>
-<li>版本库中存在一个称为stage(或index)的==暂存区==，还有Git为为我们自动创建的第一个分支<code>main</code>，以及指向<code>master</code>的一个指针叫<code>HEAD</code></li>
+<h2 id="工作区和暂存区">工作区和暂存区</h2>
+<ul>
+<li><mark>工作区</mark>：就是你在电脑里能看到的目录</li>
+<li><mark>版本库</mark>：工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库
+<ul>
+<li>版本库中存在一个称为stage(或index)的<mark>暂存区</mark>，还有Git为为我们自动创建的第一个分支<code>main</code>，以及指向<code>master</code>的一个指针叫<code>HEAD</code></li>
 </ul>
 </li>
 </ul>
 <p><img src="https://www.liaoxuefeng.com/files/attachments/919020037470528/0" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
-<li><p>我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
+<li>
+<p>我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
 <p>第一步是用<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
 <p>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
 <p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个<code>master</code>分支，所以，现在，<code>git commit</code>就是往<code>master</code>分支上提交更改</p>
 </li>
 </ul>
-<h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p><strong>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件</strong></p>
+<h2 id="管理修改">管理修改</h2>
+<p><strong>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件</strong></p>
 <ul>
 <li>git每次都会对仓库内发生的修改情况进行记录，只要存在修改就会存在记录</li>
-<li>考虑这样一种情况：第一次修改 -&gt; <code>git add</code> -&gt; 第二次修改 -&gt; <code>git commit</code><ul>
+<li>考虑这样一种情况：第一次修改 -&gt; <code>git add</code> -&gt; 第二次修改 -&gt; <code>git commit</code>
+<ul>
 <li>add会将第一次修改提交到暂存区，commit只会将暂存区的文件提交</li>
 <li>但是这并不意味着第二次修改不存在了，我们可以再进行add后再提交，仍然可以提交第二次修改</li>
 </ul>
 </li>
 </ul>
-<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><ul>
+<h2 id="撤销修改">撤销修改</h2>
+<ul>
 <li><code>git checkout</code> 可以用来新建或者切换分支， 也可以用来回退文件版本</li>
-<li>从 <code>Git 2.23</code> 版本开始引入了两个新的命令： <ul>
+<li>从 <code>Git 2.23</code> 版本开始引入了两个新的命令：
+<ul>
 <li><code>git switch</code> 切换分支</li>
-<li><code>git restore</code>：还原工作区的文件<ul>
+<li><code>git restore</code>：还原工作区的文件
+<ul>
 <li><code>--staged</code>:将暂存区的文件从暂存区撤出，但不会更改文件的内容</li>
 <li>如果文件还未add,那么不需要加上面参数；如果一级add,那么回退顺序应该是先回退暂存区，再回退文件（直接回退文件是没用的）</li>
 </ul>
@@ -310,11 +323,14 @@
 </li>
 <li>如果修改被commit了，那么只能回退版本</li>
 </ul>
-<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><ul>
+<h2 id="删除文件">删除文件</h2>
+<ul>
 <li>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用<code>rm</code>命令删了</li>
 <li>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，<code>git status</code>命令会立刻告诉你哪些文件被删除了</li>
-<li>现在你有两个选择，<ul>
-<li>一是确实要从版本库中删除该文件，那就用命令<code>git rm</code>删掉，并且<code>git commit</code><ul>
+<li>现在你有两个选择，
+<ul>
+<li>一是确实要从版本库中删除该文件，那就用命令<code>git rm</code>删掉，并且<code>git commit</code>
+<ul>
 <li>或者用<code>git add &lt;file&gt;</code>删掉</li>
 </ul>
 </li>

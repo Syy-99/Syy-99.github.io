@@ -214,10 +214,12 @@
           
             
           
-          Git简介Git起源
-在2002年以前，世界各地的志愿者把源代码文件通过==diff[3]==的方式发给Linus，然后由Linus本人通过手工方式合并==代码==
+          Git简介
+Git起源
+
+在2002年以前，世界各地的志愿者把源代码文件通过diff[3]的方式发给Linus，然后由Linus本人通过手工方式合并代码
 到了2002年,Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统
-2005,Linux社区牛人试图破解BitKeeper
+2005,Linux社区牛人试图破解BitKeeper的协议，Bi
         </a>
       </p>
 
@@ -273,18 +275,25 @@
           
             
           
-          分支管理创建与合并分支
+          分支管理
+创建与合并分支
+
+
 默认本地仓库只有一条分支main
 
 HEAD指向main,main指向要提交的时间线
 
 
+
 git switch -c &lt;新分支名&gt;:创建并切换新分支，指向main相同的提交
+
 
 此时HEAD指向新分支。之后的提交都是在新分支下
 
 
+
 不加-c表示切换分支
+
 
 
 
@@ -293,7 +302,8 @@ git branch：查看所有分支
 当前分支名前会有一个*号
 
 
-git merge &lt;分支名&g
+
+git merge &
         </a>
       </p>
 
@@ -335,11 +345,15 @@ git merge &lt;分支名&g
           
             
           
-          远程仓库配置SSH
+          远程仓库
+配置SSH
+
+
 本地Git仓库和GitHub仓库之间的传输是通过SSH加密的、
 
+
 第1步：创建SSH Key。打开Shell（Windows下打开Git Bash），创建SSH Key：
-12345cd  ~/.ssh	//检查本机是否有ssh,如果提示没有则需要创建ssh-keygen -t rsa -C &quot;youremail@example.com&quot;	//创建ssh,一
+12345cd  ~/.ssh	//检查本机是否有ssh,如果提示没有则需要创建ssh-keygen -t rsa -C &quot;youremail@example.com&quot;	//创建s
         </a>
       </p>
 
@@ -381,17 +395,22 @@ git merge &lt;分支名&g
           
             
           
-          本地仓库仓库版本控制
+          本地仓库
+仓库版本控制
+
 git status：查看本地仓库状态
 git diff：查看仓库和之前版本的区别
 git log：显示从最近的最远的提交日志
+
 --grapt：显示分支合并图
 --pretty=oneline：简化日志信息，将每个提交放在一行显示，查看的提交数很大时非常有用
 
 
 git reset --hard xxx：回退仓库版本xxx
+
 xxx
-Git中用head表示当前版本，上个版本是h
+
+Git中用head表示当前版本，上
         </a>
       </p>
 
@@ -433,17 +452,24 @@ Git中用head表示当前版本，上个版本是h
           
             
           
-          Github+Hexo搭建个人博客工具准备
+          Github+Hexo搭建个人博客
+工具准备
+
 git安装：直接官网下载即可
 Node.js安装
+
 官网下载后，可以配置一下依赖的安装环境，即配置环境变量
 
 
 Hexo安装
 
-博客初始化主题相关配置
+博客初始化
+主题相关配置
+
+
 根目录下_config.yam配置博客基本信息
 1
+
 
 配置网站头像
 

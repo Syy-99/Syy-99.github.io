@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      978 字
+      972 字
     </span>
   
 
@@ -255,52 +255,66 @@
               </p>
             
             <div class="markdown-body">
-              <h1 id="Git简介"><a href="#Git简介" class="headerlink" title="Git简介"></a>Git简介</h1><h2 id="Git起源"><a href="#Git起源" class="headerlink" title="Git起源"></a>Git起源</h2><ul>
-<li>在2002年以前，世界各地的志愿者把源代码文件通过==diff<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="diff 命令比较文本文件,它能比较单个文件或者目录内容。
-">[3]</span></a></sup>==的方式发给Linus，然后由Linus本人通过手工方式合并==代码==</li>
+              <h1>Git简介</h1>
+<h2 id="Git起源">Git起源</h2>
+<ul>
+<li>在2002年以前，世界各地的志愿者把源代码文件通过<mark>diff<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span class="hint--top hint--rounded" aria-label="diff 命令比较文本文件,它能比较单个文件或者目录内容。
+">[3]</span></a></sup><mark>的方式发给Linus，然后由Linus本人通过手工方式合并</mark>代码</mark></li>
 <li>到了2002年,Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统</li>
 <li>2005,Linux社区牛人试图破解BitKeeper的协议，BitMover公司要收回Linux社区的免费使用权</li>
 <li>Linus花了两周时间自己用C写了一个分布式版本控制系统——Git！一个月之内，Linux系统的源码已经由Git管理了</li>
 </ul>
-<h2 id="版本控制系统-lt-span-class-”hint—top-hint—rounded”-aria-label-”一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制-documentation-control-记录程序各个模组的改动，并为每次改动编上序号"><a href="#版本控制系统-lt-span-class-”hint—top-hint—rounded”-aria-label-”一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制-documentation-control-记录程序各个模组的改动，并为每次改动编上序号" class="headerlink" title="版本控制系统&lt;span class=”hint—top hint—rounded” aria-label=”一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号"></a>版本控制系统<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote">&lt;span class=”hint—top hint—rounded” aria-label=”一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号</h2><p>“&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;</p>
+<h2 id="版本控制系统-sup-id-fnref-1-class-footnote-ref-a-href-fn-1-rel-footnote-span-class-“hint–top-hint–rounded”-aria-label-一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制-documentation-control-记录程序各个模组的改动，并为每次改动编上序号">版本控制系统<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote">&lt;span class=“hint–top hint–rounded” aria-label=&quot;一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号</h2>
+<p>&quot;&gt;[1]</span></a></sup></p>
 <ul>
-<li>集中式：<ul>
+<li>集中式：
+<ul>
 <li>集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。</li>
 <li>集中式版本控制系统最大的毛病就是必须联网才能工作，受限于网速</li>
 </ul>
 </li>
-<li>分布式：<ul>
+<li>分布式：
+<ul>
 <li>分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，工作的时候，就不需要联网</li>
 <li>个人的对库文件的修改只需通过局域网推送给对方即可看到</li>
 <li>分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已</li>
 </ul>
 </li>
-<li>Git是目前世界上最先进的==分布式版本控制系统<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="每个人都可以创建一个独立的代码仓库用于管理，各种版本控制的操作都可以在本地完成。每个人修改的代码都可以推送合并到另外一个代码仓库中
-">[2]</span></a></sup>==</li>
+<li>Git是目前世界上最先进的<mark>分布式版本控制系统<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span class="hint--top hint--rounded" aria-label="每个人都可以创建一个独立的代码仓库用于管理，各种版本控制的操作都可以在本地完成。每个人修改的代码都可以推送合并到另外一个代码仓库中
+">[2]</span></a></sup></mark></li>
 </ul>
-<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><ul>
-<li><p>Linux：直接用命令行安装</p>
+<h2 id="安装Git">安装Git</h2>
+<ul>
+<li>
+<p>Linux：直接用命令行安装</p>
 </li>
-<li><p>Win：在官网下载安装程序，并配置机器名字和地址</p>
+<li>
+<p>Win：在官网下载安装程序，并配置机器名字和地址</p>
 </li>
-<li><p>具体操作互联网搜索即可</p>
+<li>
+<p>具体操作互联网搜索即可</p>
 </li>
-<li><p>第一次安装需要配置</p>
+<li>
+<p>第一次安装需要配置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;xxx&quot;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="版本库"><a href="#版本库" class="headerlink" title="版本库"></a>版本库</h2><ul>
+<h2 id="版本库">版本库</h2>
+<ul>
 <li>版本库（<em>repository</em>)：可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”</li>
 </ul>
-<h3 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h3><ul>
-<li><code>git init</code>：在指定目录中使用，可以将该目录变成Git可以管理的仓库<ul>
+<h3 id="操作过程">操作过程</h3>
+<ul>
+<li><code>git init</code>：在指定目录中使用，可以将该目录变成Git可以管理的仓库
+<ul>
 <li>会在该目录下生成一个<code>.git</code>目录，是Git用来跟踪管理版本库的，一般不需改动</li>
 <li>该仓库是一个本地仓库</li>
 </ul>
 </li>
 <li><code>git add xxx</code>：把位于指定目录的文件添加到仓库</li>
-<li><code>git commit -m &quot;xxx&quot;</code>：将文件提交到仓库<ul>
-<li>一次commit会将之前所有的add都会提交 </li>
+<li><code>git commit -m &quot;xxx&quot;</code>：将文件提交到仓库
+<ul>
+<li>一次commit会将之前所有的add都会提交</li>
 </ul>
 </li>
 </ul>
