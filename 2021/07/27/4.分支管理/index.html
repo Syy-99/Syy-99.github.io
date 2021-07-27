@@ -255,8 +255,8 @@
               </p>
             
             <div class="markdown-body">
-              <h1>分支管理</h1>
-<h2 id="创建与合并分支">创建与合并分支</h2>
+              <h1 id="分支管理"><a class="markdownIt-Anchor" href="#分支管理"></a> 分支管理</h1>
+<h2 id="创建与合并分支"><a class="markdownIt-Anchor" href="#创建与合并分支"></a> 创建与合并分支</h2>
 <ul>
 <li>
 <p>默认本地仓库只有一条分支<code>main</code></p>
@@ -269,7 +269,7 @@
 <ul>
 <li>
 <p>此时<code>HEAD</code>指向新分支。之后的提交都是在新分支下</p>
-<p><img src="https://www.liaoxuefeng.com/files/attachments/919022533080576/0" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919022533080576/0" srcset="/img/loading.gif" lazyload alt="img" /></p>
 </li>
 <li>
 <p>不加<code>-c</code>表示切换分支</p>
@@ -289,7 +289,7 @@
 <p><code>git branch -d &lt;分支名&gt;</code>：删除分支</p>
 </li>
 </ul>
-<h2 id="分支冲突">分支冲突</h2>
+<h2 id="分支冲突"><a class="markdownIt-Anchor" href="#分支冲突"></a> 分支冲突</h2>
 <ul>
 <li>
 <p>合并冲突：</p>
@@ -299,7 +299,7 @@
 </li>
 <li>
 <p>如果修改相同文件，合并时会提示冲突，需要手动修改冲突，确定文件的最终版本</p>
-<p><img src="https://www.liaoxuefeng.com/files/attachments/919023000423040/0" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919023000423040/0" srcset="/img/loading.gif" lazyload alt="img" /></p>
 </li>
 </ul>
 </li>
@@ -311,14 +311,14 @@
 <ul>
 <li>
 <p>默认使用<code>Fast forward</code>，会直接将Master分支指向Develop分支。在这种模式下，删除分支后，会丢掉分支信息</p>
-<p><img src="C:%5CUsers%5CAdministrator.USER-20201209JD%5CDesktop%5Cbg2012070505(1).png" srcset="/img/loading.gif" lazyload alt="bg2012070505(1)"></p>
+<p><img src="C:%5CUsers%5CAdministrator.USER-20201209JD%5CDesktop%5Cbg2012070505(1).png" srcset="/img/loading.gif" lazyload alt="bg2012070505(1)" /></p>
 </li>
 <li>
-<p><code> git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></p>
+<p><code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></p>
 <ul>
 <li>
 <p>使用<code>--no-ff</code>参数后，会执行正常合并，在Master分支上生成一个新节点</p>
-<p><img src="C:%5CUsers%5CAdministrator.USER-20201209JD%5CDesktop%5Cbg2012070506(1).png" srcset="/img/loading.gif" lazyload alt="bg2012070506(1)"></p>
+<p><img src="C:%5CUsers%5CAdministrator.USER-20201209JD%5CDesktop%5Cbg2012070506(1).png" srcset="/img/loading.gif" lazyload alt="bg2012070506(1)" /></p>
 </li>
 </ul>
 </li>
@@ -328,8 +328,8 @@
 <p>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并</p>
 </li>
 </ul>
-<h2 id="分支管理策略">分支管理策略</h2>
-<p><img src="https://www.liaoxuefeng.com/files/attachments/919023260793600/0" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="分支管理策略"><a class="markdownIt-Anchor" href="#分支管理策略"></a> 分支管理策略</h2>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919023260793600/0" srcset="/img/loading.gif" lazyload alt="img" /></p>
 <ul>
 <li>
 <p><mark>主分支main(master)</mark>:代码库应该有一个、且仅有一个主分支。仅用来发布新版本，平时不能在上面干活.</p>
@@ -342,7 +342,7 @@
 <ul>
 <li>
 <p><mark>功能分支feature-xxx</mark>：为了开发某种特定功能，从Develop分支上面分出来的。开发完成后，要再并入Develop</p>
-<p><img src="C:%5CUsers%5CAdministrator.USER-20201209JD%5CDesktop%5Cd4806f137df9563d148afb17a51a1134_bg2012070507.png" srcset="/img/loading.gif" lazyload alt="d4806f137df9563d148afb17a51a1134_bg2012070507"></p>
+<p><img src="C:%5CUsers%5CAdministrator.USER-20201209JD%5CDesktop%5Cd4806f137df9563d148afb17a51a1134_bg2012070507.png" srcset="/img/loading.gif" lazyload alt="d4806f137df9563d148afb17a51a1134_bg2012070507" /></p>
 </li>
 <li>
 <p><mark>预发布分支release-xxx</mark>：指发布正式版本之前（即合并到Master分支之前），我们可能需要有一个预发布的版本进行测试。预发布分支是从Develop分支上面分出来的，预发布结束以后，必须合并进Develop和Master分支.</p>

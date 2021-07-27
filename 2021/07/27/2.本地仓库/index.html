@@ -255,8 +255,8 @@
               </p>
             
             <div class="markdown-body">
-              <h1>本地仓库</h1>
-<h2 id="仓库版本控制">仓库版本控制</h2>
+              <h1 id="本地仓库"><a class="markdownIt-Anchor" href="#本地仓库"></a> 本地仓库</h1>
+<h2 id="仓库版本控制"><a class="markdownIt-Anchor" href="#仓库版本控制"></a> 仓库版本控制</h2>
 <ul>
 <li><code>git status</code>：查看本地仓库状态</li>
 <li><code>git diff</code>：查看仓库和之前版本的区别</li>
@@ -278,7 +278,7 @@
 </li>
 <li><code>git reflog</code>：记录使用的每一次命令</li>
 </ul>
-<h2 id="工作区和暂存区">工作区和暂存区</h2>
+<h2 id="工作区和暂存区"><a class="markdownIt-Anchor" href="#工作区和暂存区"></a> 工作区和暂存区</h2>
 <ul>
 <li><mark>工作区</mark>：就是你在电脑里能看到的目录</li>
 <li><mark>版本库</mark>：工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库
@@ -287,7 +287,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://www.liaoxuefeng.com/files/attachments/919020037470528/0" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919020037470528/0" srcset="/img/loading.gif" lazyload alt="img" /></p>
 <ul>
 <li>
 <p>我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
@@ -296,7 +296,7 @@
 <p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个<code>master</code>分支，所以，现在，<code>git commit</code>就是往<code>master</code>分支上提交更改</p>
 </li>
 </ul>
-<h2 id="管理修改">管理修改</h2>
+<h2 id="管理修改"><a class="markdownIt-Anchor" href="#管理修改"></a> 管理修改</h2>
 <p><strong>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件</strong></p>
 <ul>
 <li>git每次都会对仓库内发生的修改情况进行记录，只要存在修改就会存在记录</li>
@@ -307,7 +307,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="撤销修改">撤销修改</h2>
+<h2 id="撤销修改"><a class="markdownIt-Anchor" href="#撤销修改"></a> 撤销修改</h2>
 <ul>
 <li><code>git checkout</code> 可以用来新建或者切换分支， 也可以用来回退文件版本</li>
 <li>从 <code>Git 2.23</code> 版本开始引入了两个新的命令：
@@ -323,7 +323,7 @@
 </li>
 <li>如果修改被commit了，那么只能回退版本</li>
 </ul>
-<h2 id="删除文件">删除文件</h2>
+<h2 id="删除文件"><a class="markdownIt-Anchor" href="#删除文件"></a> 删除文件</h2>
 <ul>
 <li>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用<code>rm</code>命令删了</li>
 <li>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，<code>git status</code>命令会立刻告诉你哪些文件被删除了</li>
