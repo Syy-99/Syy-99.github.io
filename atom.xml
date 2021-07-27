@@ -3,11 +3,11 @@
   <title>Blog For Everything</title>
   
   <subtitle>记录学习轨迹</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://syy-99.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://syy-99.github.io/"/>
   <updated>2021-07-26T06:20:30.000Z</updated>
-  <id>http://example.com/</id>
+  <id>https://syy-99.github.io/</id>
   
   <author>
     <name>shen yayu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title></title>
-    <link href="http://example.com/2021/07/27/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/"/>
-    <id>http://example.com/2021/07/27/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</id>
+    <link href="https://syy-99.github.io/2021/07/27/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/"/>
+    <id>https://syy-99.github.io/2021/07/27/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</id>
     <published>2021-07-27T00:48:46.841Z</published>
     <updated>2021-07-26T06:20:30.000Z</updated>
     
@@ -38,8 +38,8 @@
   
   <entry>
     <title></title>
-    <link href="http://example.com/2021/07/27/3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
-    <id>http://example.com/2021/07/27/3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</id>
+    <link href="https://syy-99.github.io/2021/07/27/3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/"/>
+    <id>https://syy-99.github.io/2021/07/27/3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/</id>
     <published>2021-07-27T00:48:46.576Z</published>
     <updated>2021-07-24T03:58:20.000Z</updated>
     
@@ -58,8 +58,8 @@
   
   <entry>
     <title></title>
-    <link href="http://example.com/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/"/>
-    <id>http://example.com/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/</id>
+    <link href="https://syy-99.github.io/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/"/>
+    <id>https://syy-99.github.io/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/</id>
     <published>2021-07-27T00:48:46.069Z</published>
     <updated>2021-07-26T03:39:43.000Z</updated>
     
@@ -78,8 +78,8 @@
   
   <entry>
     <title>Git简介</title>
-    <link href="http://example.com/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/"/>
-    <id>http://example.com/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/</id>
+    <link href="https://syy-99.github.io/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/"/>
+    <id>https://syy-99.github.io/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/</id>
     <published>2021-07-27T00:48:45.792Z</published>
     <updated>2021-07-27T02:14:02.702Z</updated>
     
@@ -93,17 +93,17 @@
     
     
     
-    <category term="Git学习" scheme="http://example.com/categories/Git%E5%AD%A6%E4%B9%A0/"/>
+    <category term="Git学习" scheme="https://syy-99.github.io/categories/Git%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="Git学习" scheme="http://example.com/tags/Git%E5%AD%A6%E4%B9%A0/"/>
+    <category term="Git学习" scheme="https://syy-99.github.io/tags/Git%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>Github+Hexo搭建个人博客</title>
-    <link href="http://example.com/2021/07/26/Github+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://example.com/2021/07/26/Github+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
+    <link href="https://syy-99.github.io/2021/07/26/Github+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://syy-99.github.io/2021/07/26/Github+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
     <published>2021-07-26T11:56:59.947Z</published>
     <updated>2021-07-26T12:14:36.608Z</updated>
     
@@ -117,7 +117,7 @@
     
     
     
-    <category term="测试" scheme="http://example.com/categories/%E6%B5%8B%E8%AF%95/"/>
+    <category term="测试" scheme="https://syy-99.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
     
     
   </entry>
