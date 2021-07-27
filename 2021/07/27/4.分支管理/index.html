@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>Github+Hexo搭建个人博客 - Blog For Everything</title>
+  <title>Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Github+Hexo搭建个人博客">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-26 19:56" pubdate>
-        2021年7月26日 晚上
+      <time datetime="2021-07-27 08:48" pubdate>
+        2021年7月27日 早上
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      87 字
+      607 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      6
        分钟
     </span>
   
@@ -246,43 +246,96 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Github+Hexo搭建个人博客</h1>
+            <h1 style="display: none"></h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月26日 晚上
+                  本文最后更新于：2021年7月26日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="Github-Hexo搭建个人博客"><a href="#Github-Hexo搭建个人博客" class="headerlink" title="Github+Hexo搭建个人博客"></a>Github+Hexo搭建个人博客</h1><h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
-<li>git安装：直接官网下载即可</li>
-<li>Node.js安装<ul>
-<li>官网下载后，可以配置一下依赖的安装环境，即配置环境变量</li>
+              <h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="创建与合并分支"><a href="#创建与合并分支" class="headerlink" title="创建与合并分支"></a>创建与合并分支</h2><ul>
+<li><p>默认本地仓库只有一条分支<code>main</code></p>
+<ul>
+<li><code>HEAD</code>指向<code>main</code>,<code>main</code>指向要提交的时间线</li>
 </ul>
 </li>
-<li>Hexo安装</li>
+<li><p><code>git switch -c &lt;新分支名&gt;</code>:创建并切换新分支，指向<code>main</code>相同的提交</p>
+<ul>
+<li><p>此时<code>HEAD</code>指向新分支。之后的提交都是在新分支下</p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919022533080576/0" srcset="/img/loading.gif" lazyload alt="img"></p>
+</li>
+<li><p>不加<code>-c</code>表示切换分支</p>
+</li>
 </ul>
-<h2 id="博客初始化"><a href="#博客初始化" class="headerlink" title="博客初始化"></a>博客初始化</h2><h2 id="主题相关配置"><a href="#主题相关配置" class="headerlink" title="主题相关配置"></a>主题相关配置</h2><ul>
-<li><p>根目录下<code>_config.yam</code>配置博客基本信息</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>配置网站头像</p>
+<li><p><code>git branch</code>：查看所有分支</p>
+<ul>
+<li>当前分支名前会有一个*号</li>
+</ul>
 </li>
-<li></li>
+<li><p><code>git merge &lt;分支名&gt;</code>：合并指定分支的工作到当前分支下</p>
+</li>
+<li><p><code>git branch -d &lt;分支名&gt;</code>：删除分支</p>
+</li>
+</ul>
+<h2 id="分支冲突"><a href="#分支冲突" class="headerlink" title="分支冲突"></a>分支冲突</h2><ul>
+<li><p>合并冲突：</p>
+<ul>
+<li><p>当创建多分支时，如果修改不同文件，则合并不会提示冲突</p>
+</li>
+<li><p>如果修改相同文件，合并时会提示冲突，需要手动修改冲突，确定文件的最终版本</p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919023000423040/0" srcset="/img/loading.gif" lazyload alt="img"></p>
+</li>
+</ul>
+</li>
+<li><p>Git用<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>，<code>=======</code>，<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>标记出不同分支的内容</p>
+</li>
+<li><p>合并策略：</p>
+<ul>
+<li><p>默认使用<code>Fast forward</code>，会直接将Master分支指向Develop分支。在这种模式下，删除分支后，会丢掉分支信息</p>
+<p><img src="C:\Users\Administrator.USER-20201209JD\Desktop\bg2012070505(1" srcset="/img/loading.gif" lazyload alt="bg2012070505(1)">.png)</p>
+</li>
+<li><p><code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></p>
+<ul>
+<li><p>使用<code>--no-ff</code>参数后，会执行正常合并，在Master分支上生成一个新节点</p>
+<p><img src="C:\Users\Administrator.USER-20201209JD\Desktop\bg2012070506(1" srcset="/img/loading.gif" lazyload alt="bg2012070506(1)">.png)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并</p>
+</li>
+</ul>
+<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><p><img src="https://www.liaoxuefeng.com/files/attachments/919023260793600/0" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li><p>==主分支main(master)==:代码库应该有一个、且仅有一个主分支。仅用来发布新版本，平时不能在上面干活.</p>
+</li>
+<li><p>==工作分支dev==：日常开发。如果想正式对外发布，就在分支上，对Develop分支进行”合并”</p>
+</li>
+<li><p><strong>临时分支</strong>：</p>
+<ul>
+<li><p>==功能分支feature-xxx==：为了开发某种特定功能，从Develop分支上面分出来的。开发完成后，要再并入Develop</p>
+<p><img src="C:\Users\Administrator.USER-20201209JD\Desktop\d4806f137df9563d148afb17a51a1134_bg2012070507.png" srcset="/img/loading.gif" lazyload alt="d4806f137df9563d148afb17a51a1134_bg2012070507"></p>
+</li>
+<li><p>==预发布分支release-xxx==：指发布正式版本之前（即合并到Master分支之前），我们可能需要有一个预发布的版本进行测试。预发布分支是从Develop分支上面分出来的，预发布结束以后，必须合并进Develop和Master分支.</p>
+</li>
+<li><p>==修补bug分支fixbug-xxx==：修补bug分支是从Master分支上面分出来的。修补结束以后，再合并进Master和Develop分支</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>扩展阅读</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略</a></li>
 </ul>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a>
-                    
-                  </div>
                 
                 
               </div>
@@ -298,15 +351,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git简介</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/07/27/3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -328,7 +381,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'e1c9e78d6170a7ef30a37415a894765d'
+            id: 'a991ee7ad531faaef4d6e3206c9e7407'
           }
         )
         var gitalk = new Gitalk(options);

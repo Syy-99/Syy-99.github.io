@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>Github+Hexo搭建个人博客 - Blog For Everything</title>
+  <title>Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Github+Hexo搭建个人博客">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-26 19:56" pubdate>
-        2021年7月26日 晚上
+      <time datetime="2021-07-27 08:48" pubdate>
+        2021年7月27日 早上
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      87 字
+      880 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      9
        分钟
     </span>
   
@@ -246,43 +246,88 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Github+Hexo搭建个人博客</h1>
+            <h1 style="display: none"></h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月26日 晚上
+                  本文最后更新于：2021年7月26日 中午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="Github-Hexo搭建个人博客"><a href="#Github-Hexo搭建个人博客" class="headerlink" title="Github+Hexo搭建个人博客"></a>Github+Hexo搭建个人博客</h1><h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
-<li>git安装：直接官网下载即可</li>
-<li>Node.js安装<ul>
-<li>官网下载后，可以配置一下依赖的安装环境，即配置环境变量</li>
+              <h1 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h1><h2 id="仓库版本控制"><a href="#仓库版本控制" class="headerlink" title="仓库版本控制"></a>仓库版本控制</h2><ul>
+<li><code>git status</code>：查看本地仓库状态</li>
+<li><code>git diff</code>：查看仓库和之前版本的区别</li>
+<li><code>git log</code>：显示从最近的最远的提交日志<ul>
+<li><code>--grapt</code>：显示分支合并图</li>
+<li><code>--pretty=oneline</code>：简化日志信息，将每个提交放在一行显示，<strong>查看的提交数很大时非常有用</strong></li>
 </ul>
 </li>
-<li>Hexo安装</li>
+<li><code>git reset --hard xxx</code>：回退仓库版本xxx<ul>
+<li><code>xxx</code><ul>
+<li>Git中用<code>head</code>表示当前版本，上个版本是<code>head^</code>，上上个版本是<code>head^^</code>,也可用<code>head~10</code>来表示上10个版本</li>
+<li>直接用<code>git log</code>中提交<code>commit id（版本号）</code>前几位</li>
 </ul>
-<h2 id="博客初始化"><a href="#博客初始化" class="headerlink" title="博客初始化"></a>博客初始化</h2><h2 id="主题相关配置"><a href="#主题相关配置" class="headerlink" title="主题相关配置"></a>主题相关配置</h2><ul>
-<li><p>根目录下<code>_config.yam</code>配置博客基本信息</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>配置网站头像</p>
+</ul>
 </li>
-<li></li>
+<li><code>git reflog</code>：记录使用的每一次命令</li>
+</ul>
+<h2 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h2><ul>
+<li>==工作区==：就是你在电脑里能看到的目录</li>
+<li>==版本库==：工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库<ul>
+<li>版本库中存在一个称为stage(或index)的==暂存区==，还有Git为为我们自动创建的第一个分支<code>main</code>，以及指向<code>master</code>的一个指针叫<code>HEAD</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919020037470528/0" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li><p>我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
+<p>第一步是用<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
+<p>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
+<p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个<code>master</code>分支，所以，现在，<code>git commit</code>就是往<code>master</code>分支上提交更改</p>
+</li>
+</ul>
+<h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p><strong>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件</strong></p>
+<ul>
+<li>git每次都会对仓库内发生的修改情况进行记录，只要存在修改就会存在记录</li>
+<li>考虑这样一种情况：第一次修改 -&gt; <code>git add</code> -&gt; 第二次修改 -&gt; <code>git commit</code><ul>
+<li>add会将第一次修改提交到暂存区，commit只会将暂存区的文件提交</li>
+<li>但是这并不意味着第二次修改不存在了，我们可以再进行add后再提交，仍然可以提交第二次修改</li>
+</ul>
+</li>
+</ul>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><ul>
+<li><code>git checkout</code> 可以用来新建或者切换分支， 也可以用来回退文件版本</li>
+<li>从 <code>Git 2.23</code> 版本开始引入了两个新的命令： <ul>
+<li><code>git switch</code> 切换分支</li>
+<li><code>git restore</code>：还原工作区的文件<ul>
+<li><code>--staged</code>:将暂存区的文件从暂存区撤出，但不会更改文件的内容</li>
+<li>如果文件还未add,那么不需要加上面参数；如果一级add,那么回退顺序应该是先回退暂存区，再回退文件（直接回退文件是没用的）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果修改被commit了，那么只能回退版本</li>
+</ul>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><ul>
+<li>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用<code>rm</code>命令删了</li>
+<li>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，<code>git status</code>命令会立刻告诉你哪些文件被删除了</li>
+<li>现在你有两个选择，<ul>
+<li>一是确实要从版本库中删除该文件，那就用命令<code>git rm</code>删掉，并且<code>git commit</code><ul>
+<li>或者用<code>git add &lt;file&gt;</code>删掉</li>
+</ul>
+</li>
+<li>另一种情况是删错了，因为版本库里还有，所以当然可以撤销修改</li>
+</ul>
+</li>
+<li><strong>注意：从来没有被添加到版本库就被删除的文件，是无法恢复的！</strong></li>
 </ul>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a>
-                    
-                  </div>
                 
                 
               </div>
@@ -298,15 +343,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/">
+                      <a href="/2021/07/27/3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git简介</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/">
+                        <span class="hidden-mobile">Git简介</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -328,7 +379,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'e1c9e78d6170a7ef30a37415a894765d'
+            id: '04cab6eb1dda3e548693d01fd212801d'
           }
         )
         var gitalk = new Gitalk(options);

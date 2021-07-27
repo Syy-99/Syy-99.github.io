@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>Github+Hexo搭建个人博客 - Blog For Everything</title>
+  <title>Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Github+Hexo搭建个人博客">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-26 19:56" pubdate>
-        2021年7月26日 晚上
+      <time datetime="2021-07-27 08:48" pubdate>
+        2021年7月27日 早上
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      87 字
+      499 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      5
        分钟
     </span>
   
@@ -246,43 +246,51 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Github+Hexo搭建个人博客</h1>
+            <h1 style="display: none"></h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月26日 晚上
+                  本文最后更新于：2021年7月24日 中午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="Github-Hexo搭建个人博客"><a href="#Github-Hexo搭建个人博客" class="headerlink" title="Github+Hexo搭建个人博客"></a>Github+Hexo搭建个人博客</h1><h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><ul>
-<li>git安装：直接官网下载即可</li>
-<li>Node.js安装<ul>
-<li>官网下载后，可以配置一下依赖的安装环境，即配置环境变量</li>
+              <h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><h2 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h2><ul>
+<li><p>本地Git仓库和GitHub仓库之间的传输是通过SSH加密的、</p>
+</li>
+<li><p>第1步：创建SSH Key。打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span>  ~<span class="hljs-string">/.ssh</span>	<span class="hljs-string">//</span>检查本机是否有ssh,如果提示没有则需要创建<br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span>	<span class="hljs-string">//</span>创建ssh,一路回车，使用默认值即可<br><span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span> 	<span class="hljs-string">//</span>进入文件<br>ll	<span class="hljs-string">//</span>查看是否存在有id_rsa（私匙）和id_rsa.pub（公匙）两个文件<br>cat id_rsa.pub	<span class="hljs-string">//</span>查看公匙<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面</p>
+<ul>
+<li>点“Add SSH Key”，填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容</li>
 </ul>
 </li>
-<li>Hexo安装</li>
+<li><p>GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
+</li>
 </ul>
-<h2 id="博客初始化"><a href="#博客初始化" class="headerlink" title="博客初始化"></a>博客初始化</h2><h2 id="主题相关配置"><a href="#主题相关配置" class="headerlink" title="主题相关配置"></a>主题相关配置</h2><ul>
-<li><p>根目录下<code>_config.yam</code>配置博客基本信息</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><br></code></pre></td></tr></table></figure>
+<h2 id="本地仓库关联远程仓库"><a href="#本地仓库关联远程仓库" class="headerlink" title="本地仓库关联远程仓库"></a>本地仓库关联远程仓库</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ul>
+<li><code>git remote add origin &lt;仓库地址&gt;</code>：连接远程仓库<ul>
+<li>仓库地址选择git开头的那个</li>
+<li>添加后，远程库的名字就是<code>origin</code>，这是Git默认的叫法，也可以改成别的</li>
+</ul>
 </li>
-<li><p>配置网站头像</p>
+<li><code>git push -u &lt;远程仓库名&gt; &lt;本地分支名&gt;</code>：将当前本地仓库分支推送到远程仓库<ul>
+<li><code>-u</code>：第一次推送<code>master</code>分支时，加上<code>-u</code>参数，Git不但会把本地的<code>main</code>分支内容推送的远程新的<code>main</code>分支，还会把本地的<code>main</code>分支和远程的<code>main</code>分支关联起来，在以后的推送或者拉取时就可以简化命令,直接使用<code>git push</code></li>
+<li><code>&lt;本地分支名&gt;:&lt;远程分支名&gt;</code>：推送到远程仓库的分支重新命名</li>
+</ul>
 </li>
-<li></li>
+<li><code>git remote rm &lt;远程仓库名&gt;</code>：解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动</li>
+<li><code>git remote -v</code>：查看远程库信息</li>
+</ul>
+<h2 id="克隆远程库"><a href="#克隆远程库" class="headerlink" title="克隆远程库"></a>克隆远程库</h2><h3 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h3><ul>
+<li><code>git clone &lt;仓库地址&gt;</code></li>
 </ul>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a>
-                    
-                  </div>
                 
                 
               </div>
@@ -298,15 +306,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/">
+                      <a href="/2021/07/27/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git简介</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -328,7 +342,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'e1c9e78d6170a7ef30a37415a894765d'
+            id: '7d13af92f08f366ccdc599fb8ce8bb7c'
           }
         )
         var gitalk = new Gitalk(options);
