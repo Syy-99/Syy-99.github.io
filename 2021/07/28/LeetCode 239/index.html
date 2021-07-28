@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>远程仓库 - Blog For Everything</title>
+  <title>LeetCode 239 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="远程仓库">
+            <span class="h2" id="subtitle" title="LeetCode 239">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-27 08:48" pubdate>
-        2021年7月27日 早上
+      <time datetime="2021-07-28 16:21" pubdate>
+        2021年7月28日 下午
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      499 字
+      823 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      10
        分钟
     </span>
   
@@ -246,57 +246,53 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">远程仓库</h1>
+            <h1 style="display: none">LeetCode 239</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月27日 下午
+                  本文最后更新于：2021年7月28日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="远程仓库"><a class="markdownIt-Anchor" href="#远程仓库"></a> 远程仓库</h1>
-<h2 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h2>
+              <h1 id="leetcode-239"><a class="markdownIt-Anchor" href="#leetcode-239"></a> LeetCode 239</h1>
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sliding-window-maximum/">https://leetcode-cn.com/problems/sliding-window-maximum/</a></li>
+<li>给定一个整形数组，固定滑动窗口长度，窗口从左到右每次滑动一个元素，返回每次窗口的最大值</li>
+</ul>
+<h2 id="思路1"><a class="markdownIt-Anchor" href="#思路1"></a> 思路1</h2>
 <ul>
 <li>
-<p>本地Git仓库和GitHub仓库之间的传输是通过SSH加密的、</p>
+<p>滑动窗口的模拟，容易想到使用队列</p>
 </li>
 <li>
-<p>第1步：创建SSH Key。打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span>  ~<span class="hljs-string">/.ssh</span>	<span class="hljs-string">//</span>检查本机是否有ssh,如果提示没有则需要创建<br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span>	<span class="hljs-string">//</span>创建ssh,一路回车，使用默认值即可<br><span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span> 	<span class="hljs-string">//</span>进入文件<br>ll	<span class="hljs-string">//</span>查看是否存在有id_rsa（私匙）和id_rsa.pub（公匙）两个文件<br>cat id_rsa.pub	<span class="hljs-string">//</span>查看公匙<br></code></pre></td></tr></table></figure>
+<p>难点是如何找到每次窗口的最大值，如果在次窗口中暴力求解，O（N^2）会超时。考虑最好在每次窗口滑动时，就能确定最大值。</p>
 </li>
 <li>
-<p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面</p>
-<ul>
-<li>点“Add SSH Key”，填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容</li>
-</ul>
+<p>找最大值需要比较排序，考虑<mark>优先队列</mark>可以确保每次最大值都在窗口的第一个。问题又来了，因为排序后数字的位置改变，每次移出窗口的数不一定是优先队列中最左边的数，如何来确认呢？</p>
 </li>
 <li>
-<p>GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
+<p>因为我们只需要找到每次的最大值，<strong>不需要关心队列里到底有哪些数字</strong>。而最大值永远在优先队列的最左边，我们只需判断每次移动后，该最大值是否被移出队列即可。</p>
+<p>每次移出窗口的数组下标是确定的，所以我们可以同时保存值和下标，这样就算排序后数组位置改变，我们还是可以确定是否目前的最大值是否被移出。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">maxSlidingWindow</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        priority_queue&lt;pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; &gt; q;		<span class="hljs-comment">//同时保存值和下标</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i) &#123;<br>            q.<span class="hljs-built_in">emplace</span>(nums[i], i);	<br>        &#125;<br>        vector&lt;<span class="hljs-keyword">int</span>&gt; ans = &#123;q.<span class="hljs-built_in">top</span>().first&#125;;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = k; i &lt; n; ++i) &#123;<br>            q.<span class="hljs-built_in">emplace</span>(nums[i], i);<br>            <span class="hljs-keyword">while</span> (q.<span class="hljs-built_in">top</span>().second &lt;= i - k) &#123;	<span class="hljs-comment">//i-k之前的数都是应该被移出的</span><br>                q.<span class="hljs-built_in">pop</span>();<br>            &#125;<br>            ans.<span class="hljs-built_in">push_back</span>(q.<span class="hljs-built_in">top</span>().first);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br><span class="hljs-comment">//时间：O(nlogn) 	空间：O(n)</span><br></code></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="本地仓库关联远程仓库"><a class="markdownIt-Anchor" href="#本地仓库关联远程仓库"></a> 本地仓库关联远程仓库</h2>
-<h3 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h3>
+<h2 id="思路2"><a class="markdownIt-Anchor" href="#思路2"></a> 思路2</h2>
 <ul>
-<li><code>git remote add origin &lt;仓库地址&gt;</code>：连接远程仓库
+<li>
+<p><strong>其实队列没有必要维护窗口里的所有元素，只需要维护有可能成为窗口里最大值的元素就可以了</strong></p>
 <ul>
-<li>仓库地址选择git开头的那个</li>
-<li>添加后，远程库的名字就是<code>origin</code>，这是Git默认的叫法，也可以改成别的</li>
+<li>如果当前的滑动窗口中有两个下标 i 和 j，其中 i 在 j 的左侧（i &lt; j），并且 i 对应的元素不大于 j 对应的元素（nums[i]≤nums[j]）</li>
+<li>当窗口右移时，如果 i 还在窗口，j 一定在窗口，且此时最大值不可能是nums[i]</li>
+<li>按照上述分析，所有num[i]就可以不用保存在队列中了</li>
 </ul>
 </li>
-<li><code>git push -u &lt;远程仓库名&gt; &lt;本地分支名&gt;</code>：将当前本地仓库分支推送到远程仓库
-<ul>
-<li><code>-u</code>：第一次推送<code>master</code>分支时，加上<code>-u</code>参数，Git不但会把本地的<code>main</code>分支内容推送的远程新的<code>main</code>分支，还会把本地的<code>main</code>分支和远程的<code>main</code>分支关联起来，在以后的推送或者拉取时就可以简化命令,直接使用<code>git push</code></li>
-<li><code>&lt;本地分支名&gt;:&lt;远程分支名&gt;</code>：推送到远程仓库的分支重新命名</li>
+<li></li>
 </ul>
-</li>
-<li><code>git remote rm &lt;远程仓库名&gt;</code>：解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动</li>
-<li><code>git remote -v</code>：查看远程库信息</li>
-</ul>
-<h2 id="克隆远程库"><a class="markdownIt-Anchor" href="#克隆远程库"></a> 克隆远程库</h2>
-<h3 id="命令-2"><a class="markdownIt-Anchor" href="#命令-2"></a> 命令</h3>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">maxSlidingWindow</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        vector&lt;<span class="hljs-keyword">int</span>&gt; result;<br>        deque&lt;<span class="hljs-keyword">int</span>&gt; dq;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>            <span class="hljs-keyword">while</span>(!dq.<span class="hljs-built_in">empty</span>()&amp;&amp;nums[i]&gt;dq.<span class="hljs-built_in">back</span>())&#123;	<span class="hljs-comment">//按上述分析 保存特定顺序下的窗口元素</span><br>                dq.<span class="hljs-built_in">pop_back</span>();<br>            &#125;<br>            dq.<span class="hljs-built_in">emplace_back</span>(nums[i]);<br>        &#125;<br>       result.<span class="hljs-built_in">push_back</span>(dq.<span class="hljs-built_in">front</span>());	<span class="hljs-comment">//第一个窗口的最大值</span><br>       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=k;i&lt;n;i++)&#123;<br>        <span class="hljs-keyword">if</span>(!dq.<span class="hljs-built_in">empty</span>()&amp;&amp;nums[i-k]==dq.<span class="hljs-built_in">front</span>())	<span class="hljs-comment">//num[i-k]是窗口该移出的元素，判断是否等于队列最前面的值，如果相等则表示其会被移出窗口</span><br>            dq.<span class="hljs-built_in">pop_front</span>();			why???<br>        <span class="hljs-keyword">while</span>(!dq.<span class="hljs-built_in">empty</span>()&amp;&amp;nums[i]&gt;dq.<span class="hljs-built_in">back</span>())	<span class="hljs-comment">//只要添加数字进窗口都进行该操作</span><br>            dq.<span class="hljs-built_in">pop_back</span>();<br>            dq.<span class="hljs-built_in">emplace_back</span>(nums[i]);<br>        result.<span class="hljs-built_in">emplace_back</span>(dq.<span class="hljs-built_in">front</span>());    <span class="hljs-comment">//每次移动完后，队列最前面的值，就是此时窗口的最大值  why??</span><br>       &#125;<br>       <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br><br><br></code></pre></td></tr></table></figure>
 <ul>
-<li><code>git clone &lt;仓库地址&gt;</code></li>
+<li><mark>有两处问题需要考虑</mark></li>
 </ul>
 
             </div>
@@ -307,7 +303,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Git%E5%AD%A6%E4%B9%A0/">Git学习</a>
+                      <a class="hover-with-bg" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>
                     
                   </div>
                 
@@ -315,7 +311,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                      <a class="hover-with-bg" href="/tags/LeetCode%E5%88%B7%E9%A2%98/">LeetCode刷题</a>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
                     
                   </div>
                 
@@ -332,9 +330,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/28/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94LeetCode/">
+                      <a href="/2021/07/28/LeetCode%20454/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">刷题记录——LeetCode</span>
+                        <span class="hidden-mobile">LeetCode 454</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -342,8 +340,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
-                        <span class="hidden-mobile">本地仓库</span>
+                      <a href="/2021/07/28/LeetCode%20142/">
+                        <span class="hidden-mobile">LeetCode 142</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -368,7 +366,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '7d13af92f08f366ccdc599fb8ce8bb7c'
+            id: '809c0d098cc7c20b0e00205cad9abe9f'
           }
         )
         var gitalk = new Gitalk(options);

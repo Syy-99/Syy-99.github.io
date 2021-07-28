@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>远程仓库 - Blog For Everything</title>
+  <title>LeetCode 15 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="远程仓库">
+            <span class="h2" id="subtitle" title="LeetCode 15">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-27 08:48" pubdate>
-        2021年7月27日 早上
+      <time datetime="2021-07-28 16:21" pubdate>
+        2021年7月28日 下午
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      499 字
+      467 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      6
        分钟
     </span>
   
@@ -246,57 +246,48 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">远程仓库</h1>
+            <h1 style="display: none">LeetCode 15</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月27日 下午
+                  本文最后更新于：2021年7月28日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="远程仓库"><a class="markdownIt-Anchor" href="#远程仓库"></a> 远程仓库</h1>
-<h2 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h2>
+              <h1 id="leetcode-15"><a class="markdownIt-Anchor" href="#leetcode-15"></a> LeetCode 15</h1>
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum">https://leetcode-cn.com/problems/3sum</a></li>
+<li>从一个数组中，找到所有的三个不同位置的数字，相加等于0</li>
+<li>返回所有的相加等于0的三个数字，且结果不重复</li>
+</ul>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
 <ul>
 <li>
-<p>本地Git仓库和GitHub仓库之间的传输是通过SSH加密的、</p>
+<p>理解题目要求，三个数字位置要不同,三个数字组成的结果不重复，最后按组返回所有的三个数字</p>
 </li>
 <li>
-<p>第1步：创建SSH Key。打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span>  ~<span class="hljs-string">/.ssh</span>	<span class="hljs-string">//</span>检查本机是否有ssh,如果提示没有则需要创建<br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span>	<span class="hljs-string">//</span>创建ssh,一路回车，使用默认值即可<br><span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span> 	<span class="hljs-string">//</span>进入文件<br>ll	<span class="hljs-string">//</span>查看是否存在有id_rsa（私匙）和id_rsa.pub（公匙）两个文件<br>cat id_rsa.pub	<span class="hljs-string">//</span>查看公匙<br></code></pre></td></tr></table></figure>
+<p>返回最终集合不能重复，所以这题不好用哈希法，因为哈希会把所有的结果都选出来，那么就可能三个数字组成的集合是重复的</p>
+<p>所以，考虑多指针法，而正好题目只需我们返回最终的值，那么可以将数据排序</p>
 </li>
 <li>
-<p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面</p>
+<p>如何确定指针数？</p>
 <ul>
-<li>点“Add SSH Key”，填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容</li>
+<li>首页一个排好序的数组，指针的移动方向就两个——前、后，所以移动指针可以有两个</li>
+<li>这题要求选三个，所以我们当然要选三个指针指向最终的结果</li>
 </ul>
 </li>
 <li>
-<p>GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
+<p>如何去重？</p>
+<ul>
+<li>
+<p>因为排好序，所以相同的数据都集中在一起，只需判断此时的数据和之前的数据是否相同</p>
+<p>如果相同，则不处理该数据；</p>
 </li>
 </ul>
-<h2 id="本地仓库关联远程仓库"><a class="markdownIt-Anchor" href="#本地仓库关联远程仓库"></a> 本地仓库关联远程仓库</h2>
-<h3 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h3>
-<ul>
-<li><code>git remote add origin &lt;仓库地址&gt;</code>：连接远程仓库
-<ul>
-<li>仓库地址选择git开头的那个</li>
-<li>添加后，远程库的名字就是<code>origin</code>，这是Git默认的叫法，也可以改成别的</li>
-</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums) &#123;<br>        vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; result;<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(),nums.<span class="hljs-built_in">end</span>());	<span class="hljs-comment">//排序</span><br>        <span class="hljs-keyword">int</span> L=nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;L;i++)&#123;<br>            <span class="hljs-keyword">if</span>(nums[i]&gt;<span class="hljs-number">0</span>)	<span class="hljs-comment">//剪枝</span><br>                <span class="hljs-keyword">break</span>;<br>            <span class="hljs-keyword">int</span> j=i+<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">int</span> k=L<span class="hljs-number">-1</span>;<br>            <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">0</span>&amp;&amp;nums[i]==nums[i<span class="hljs-number">-1</span>]) <span class="hljs-keyword">continue</span>;	<span class="hljs-comment">//去重</span><br>            <span class="hljs-keyword">while</span>(k&gt;j)&#123;<br>                <span class="hljs-keyword">if</span>(nums[i] + nums[j] + nums[k]&gt;<span class="hljs-number">0</span>)	<span class="hljs-comment">//移动指针</span><br>					k--;<br>				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[i] + nums[j] + nums[k]&lt;<span class="hljs-number">0</span>)<br>					j++;<br>				<span class="hljs-keyword">else</span>&#123;<br>					result.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-keyword">int</span>&gt;&#123;nums[i], nums[j], nums[k]&#125;);	<span class="hljs-comment">//获得结果</span><br>					<span class="hljs-keyword">while</span>(nums[k]==nums[k<span class="hljs-number">-1</span>]&amp;&amp;k&gt;j)   k--;	<span class="hljs-comment">//去重</span><br>                    <span class="hljs-keyword">while</span>(nums[j]==nums[j+<span class="hljs-number">1</span>]&amp;&amp;k&gt;j)   j++;<br>					<span class="hljs-comment">//继续寻找</span><br>                    j++;<br>                    k--;<br>				&#125;<br>            &#125;<br><br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 </li>
-<li><code>git push -u &lt;远程仓库名&gt; &lt;本地分支名&gt;</code>：将当前本地仓库分支推送到远程仓库
-<ul>
-<li><code>-u</code>：第一次推送<code>master</code>分支时，加上<code>-u</code>参数，Git不但会把本地的<code>main</code>分支内容推送的远程新的<code>main</code>分支，还会把本地的<code>main</code>分支和远程的<code>main</code>分支关联起来，在以后的推送或者拉取时就可以简化命令,直接使用<code>git push</code></li>
-<li><code>&lt;本地分支名&gt;:&lt;远程分支名&gt;</code>：推送到远程仓库的分支重新命名</li>
-</ul>
-</li>
-<li><code>git remote rm &lt;远程仓库名&gt;</code>：解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动</li>
-<li><code>git remote -v</code>：查看远程库信息</li>
-</ul>
-<h2 id="克隆远程库"><a class="markdownIt-Anchor" href="#克隆远程库"></a> 克隆远程库</h2>
-<h3 id="命令-2"><a class="markdownIt-Anchor" href="#命令-2"></a> 命令</h3>
-<ul>
-<li><code>git clone &lt;仓库地址&gt;</code></li>
 </ul>
 
             </div>
@@ -307,7 +298,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Git%E5%AD%A6%E4%B9%A0/">Git学习</a>
+                      <a class="hover-with-bg" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>
                     
                   </div>
                 
@@ -315,7 +306,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                      <a class="hover-with-bg" href="/tags/LeetCode%E5%88%B7%E9%A2%98/">LeetCode刷题</a>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
                     
                   </div>
                 
@@ -332,9 +325,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/28/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94LeetCode/">
+                      <a href="/2021/07/28/LeetCode%2018/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">刷题记录——LeetCode</span>
+                        <span class="hidden-mobile">LeetCode 18</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -342,8 +335,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
-                        <span class="hidden-mobile">本地仓库</span>
+                      <a href="/2021/07/28/LeetCode%201/">
+                        <span class="hidden-mobile">LeetCode 1</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -368,7 +361,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '7d13af92f08f366ccdc599fb8ce8bb7c'
+            id: 'be0b6008edbe188616f879980e92da34'
           }
         )
         var gitalk = new Gitalk(options);

@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>远程仓库 - Blog For Everything</title>
+  <title>LeetCode 59 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="远程仓库">
+            <span class="h2" id="subtitle" title="LeetCode 59">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-27 08:48" pubdate>
-        2021年7月27日 早上
+      <time datetime="2021-07-28 16:21" pubdate>
+        2021年7月28日 下午
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      499 字
+      410 字
     </span>
   
 
@@ -246,57 +246,31 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">远程仓库</h1>
+            <h1 style="display: none">LeetCode 59</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月27日 下午
+                  本文最后更新于：2021年7月28日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="远程仓库"><a class="markdownIt-Anchor" href="#远程仓库"></a> 远程仓库</h1>
-<h2 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h2>
+              <h1 id="leetcode-59"><a class="markdownIt-Anchor" href="#leetcode-59"></a> LeetCode 59</h1>
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2>
+<p>​	输入n，在n*n的矩阵中，从左上角开始，逆时针填入数字1-n<sup>2</sup>,然后输出矩阵</p>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
 <ul>
 <li>
-<p>本地Git仓库和GitHub仓库之间的传输是通过SSH加密的、</p>
+<p>首页，应该能知道这题是一个模拟题</p>
 </li>
 <li>
-<p>第1步：创建SSH Key。打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span>  ~<span class="hljs-string">/.ssh</span>	<span class="hljs-string">//</span>检查本机是否有ssh,如果提示没有则需要创建<br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span>	<span class="hljs-string">//</span>创建ssh,一路回车，使用默认值即可<br><span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span> 	<span class="hljs-string">//</span>进入文件<br>ll	<span class="hljs-string">//</span>查看是否存在有id_rsa（私匙）和id_rsa.pub（公匙）两个文件<br>cat id_rsa.pub	<span class="hljs-string">//</span>查看公匙<br></code></pre></td></tr></table></figure>
+<p>手动模拟操作，可以发现，顺序上-右-下-左都是一样的，只是规模再变小。所以一次大循环里面，应该是把四个方向的任务完成。</p>
 </li>
 <li>
-<p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面</p>
-<ul>
-<li>点“Add SSH Key”，填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容</li>
-</ul>
+<p>还要注意的是边界的选取，因为上-右、右-下、下-左，均是存在一个重叠的数字的。这里选择左闭右开，是因为每次处理一个方向后，循环变量还会加一，</p>
+<p>所以干脆直接将加一利用起来，再之后的方向继续使用，减少操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++">vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-built_in">generateMatrix</span>(<span class="hljs-keyword">int</span> n) &#123;<br>        vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt; &gt; <span class="hljs-built_in">result</span>(n, vector&lt;<span class="hljs-keyword">int</span>&gt;(n, <span class="hljs-number">0</span>));<br>        <span class="hljs-keyword">int</span> loop=n/<span class="hljs-number">2</span>;	<span class="hljs-comment">//一次一圈，所以除2</span><br>        <span class="hljs-keyword">int</span> startx=<span class="hljs-number">0</span>,starty=<span class="hljs-number">0</span>;	<span class="hljs-comment">//记录起始位置</span><br>        <span class="hljs-keyword">int</span> i,j;<br>        <span class="hljs-keyword">int</span> ans=<span class="hljs-number">1</span>;	<span class="hljs-comment">//数字增量</span><br>        <span class="hljs-keyword">int</span> offset=<span class="hljs-number">1</span>;	<span class="hljs-comment">//相同循环操作的偏移量</span><br>        <span class="hljs-keyword">while</span>(loop--)&#123;<br>            i=startx;	<br>            j=starty;<br>            <span class="hljs-keyword">for</span>(;j&lt;n-offset+startx;j++)	<span class="hljs-comment">//注意j的范围是要有偏移量的</span><br>                result[i][j]=ans++;<br>			<span class="hljs-comment">//因为采用左闭右开，所以j最后加出来的数，可以在下面的循环里直接用</span><br>            <span class="hljs-keyword">for</span>(;i&lt;n-offset+startx;i++)<br>                result[i][j]=ans++;<br>                <br>            <span class="hljs-keyword">for</span>(;j&gt;starty;j--)<br>                result[i][j]=ans++;<br>           <br>            <span class="hljs-keyword">for</span>(;i&gt;startx;i--)<br>                result[i][j]=ans++;<br>            <span class="hljs-comment">//下一轮作准备</span><br>            startx++;<br>            starty++;	<span class="hljs-comment">//起始位置改变</span><br>            offset+=<span class="hljs-number">2</span>;	<span class="hljs-comment">//偏移量改变</span><br>        &#125;<br>         <span class="hljs-keyword">if</span> (n%<span class="hljs-number">2</span>) &#123;		<span class="hljs-comment">//n是奇数，则存在一个正中间数会少loop一次，需要额外处理</span><br>            result[n/<span class="hljs-number">2</span>][n/<span class="hljs-number">2</span>] = ans;<br>        &#125;<br>        <span class="hljs-keyword">return</span>  result;<br>    &#125;<br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
-</li>
-</ul>
-<h2 id="本地仓库关联远程仓库"><a class="markdownIt-Anchor" href="#本地仓库关联远程仓库"></a> 本地仓库关联远程仓库</h2>
-<h3 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h3>
-<ul>
-<li><code>git remote add origin &lt;仓库地址&gt;</code>：连接远程仓库
-<ul>
-<li>仓库地址选择git开头的那个</li>
-<li>添加后，远程库的名字就是<code>origin</code>，这是Git默认的叫法，也可以改成别的</li>
-</ul>
-</li>
-<li><code>git push -u &lt;远程仓库名&gt; &lt;本地分支名&gt;</code>：将当前本地仓库分支推送到远程仓库
-<ul>
-<li><code>-u</code>：第一次推送<code>master</code>分支时，加上<code>-u</code>参数，Git不但会把本地的<code>main</code>分支内容推送的远程新的<code>main</code>分支，还会把本地的<code>main</code>分支和远程的<code>main</code>分支关联起来，在以后的推送或者拉取时就可以简化命令,直接使用<code>git push</code></li>
-<li><code>&lt;本地分支名&gt;:&lt;远程分支名&gt;</code>：推送到远程仓库的分支重新命名</li>
-</ul>
-</li>
-<li><code>git remote rm &lt;远程仓库名&gt;</code>：解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动</li>
-<li><code>git remote -v</code>：查看远程库信息</li>
-</ul>
-<h2 id="克隆远程库"><a class="markdownIt-Anchor" href="#克隆远程库"></a> 克隆远程库</h2>
-<h3 id="命令-2"><a class="markdownIt-Anchor" href="#命令-2"></a> 命令</h3>
-<ul>
-<li><code>git clone &lt;仓库地址&gt;</code></li>
 </ul>
 
             </div>
@@ -307,7 +281,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Git%E5%AD%A6%E4%B9%A0/">Git学习</a>
+                      <a class="hover-with-bg" href="/categories/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>
                     
                   </div>
                 
@@ -315,7 +289,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                      <a class="hover-with-bg" href="/tags/LeetCode%E5%88%B7%E9%A2%98/">LeetCode刷题</a>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
                     
                   </div>
                 
@@ -332,9 +308,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/28/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94LeetCode/">
+                      <a href="/2021/07/28/LeetCode%2069/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">刷题记录——LeetCode</span>
+                        <span class="hidden-mobile">LeetCode 69</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -342,8 +318,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
-                        <span class="hidden-mobile">本地仓库</span>
+                      <a href="/2021/07/28/LeetCode%2034/">
+                        <span class="hidden-mobile">LeetCode 34</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -368,7 +344,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '7d13af92f08f366ccdc599fb8ce8bb7c'
+            id: '0ce83a3d0e686c818221560daaff0547'
           }
         )
         var gitalk = new Gitalk(options);

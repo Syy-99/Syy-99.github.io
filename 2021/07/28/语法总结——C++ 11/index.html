@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>远程仓库 - Blog For Everything</title>
+  <title>语法总结——C++11 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="远程仓库">
+            <span class="h2" id="subtitle" title="语法总结——C++11">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-27 08:48" pubdate>
-        2021年7月27日 早上
+      <time datetime="2021-07-28 16:21" pubdate>
+        2021年7月28日 下午
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      499 字
+      200 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      2
        分钟
     </span>
   
@@ -246,57 +246,53 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">远程仓库</h1>
+            <h1 style="display: none">语法总结——C++11</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年7月27日 下午
+                  本文最后更新于：2021年7月28日 下午
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="远程仓库"><a class="markdownIt-Anchor" href="#远程仓库"></a> 远程仓库</h1>
-<h2 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h2>
+              <h1 id="语法总结c-11"><a class="markdownIt-Anchor" href="#语法总结c-11"></a> 语法总结——C++ 11</h1>
+<h2 id="使用emplace操作"><a class="markdownIt-Anchor" href="#使用emplace操作"></a> 使用emplace操作</h2>
+<table>
+<thead>
+<tr>
+<th>新函数</th>
+<th>对应之前函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>emplace(i, type)</td>
+<td>insert(type, i)</td>
+</tr>
+<tr>
+<td>emplace_front</td>
+<td>push_front</td>
+</tr>
+<tr>
+<td>emplace_back</td>
+<td>push_back</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>
-<p>本地Git仓库和GitHub仓库之间的传输是通过SSH加密的、</p>
-</li>
-<li>
-<p>第1步：创建SSH Key。打开Shell（Windows下打开Git Bash），创建SSH Key：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span>  ~<span class="hljs-string">/.ssh</span>	<span class="hljs-string">//</span>检查本机是否有ssh,如果提示没有则需要创建<br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;youremail@example.com&quot;</span>	<span class="hljs-string">//</span>创建ssh,一路回车，使用默认值即可<br><span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span> 	<span class="hljs-string">//</span>进入文件<br>ll	<span class="hljs-string">//</span>查看是否存在有id_rsa（私匙）和id_rsa.pub（公匙）两个文件<br>cat id_rsa.pub	<span class="hljs-string">//</span>查看公匙<br></code></pre></td></tr></table></figure>
-</li>
-<li>
-<p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面</p>
+<p>emplace是构造而不是拷贝元素，不需要拷贝或者移动内存。</p>
 <ul>
-<li>点“Add SSH Key”，填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容</li>
+<li>如果元素是基本类型，新特性就没有体现，也就没有优势</li>
 </ul>
 </li>
 <li>
-<p>GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p>
+<p>所有的标准库容器（array除外，因为它的长度不可改变，不能插入元素）都增加了类似的方法</p>
 </li>
-</ul>
-<h2 id="本地仓库关联远程仓库"><a class="markdownIt-Anchor" href="#本地仓库关联远程仓库"></a> 本地仓库关联远程仓库</h2>
-<h3 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h3>
-<ul>
-<li><code>git remote add origin &lt;仓库地址&gt;</code>：连接远程仓库
-<ul>
-<li>仓库地址选择git开头的那个</li>
-<li>添加后，远程库的名字就是<code>origin</code>，这是Git默认的叫法，也可以改成别的</li>
-</ul>
+<li>
+<p>使用示例</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">S.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">data</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))	<span class="hljs-comment">//让其构造函数构造好了对象之后，再使用复制构造函数</span><br>S.<span class="hljs-built_in">emplace</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)	<span class="hljs-comment">//emplace这样接受新对象的时候，自己会调用其构造函数生成对象然后放在容器内（比如这里传入了1，2，它则会自动调用一次data(1,2))</span><br></code></pre></td></tr></table></figure>
 </li>
-<li><code>git push -u &lt;远程仓库名&gt; &lt;本地分支名&gt;</code>：将当前本地仓库分支推送到远程仓库
-<ul>
-<li><code>-u</code>：第一次推送<code>master</code>分支时，加上<code>-u</code>参数，Git不但会把本地的<code>main</code>分支内容推送的远程新的<code>main</code>分支，还会把本地的<code>main</code>分支和远程的<code>main</code>分支关联起来，在以后的推送或者拉取时就可以简化命令,直接使用<code>git push</code></li>
-<li><code>&lt;本地分支名&gt;:&lt;远程分支名&gt;</code>：推送到远程仓库的分支重新命名</li>
-</ul>
-</li>
-<li><code>git remote rm &lt;远程仓库名&gt;</code>：解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动</li>
-<li><code>git remote -v</code>：查看远程库信息</li>
-</ul>
-<h2 id="克隆远程库"><a class="markdownIt-Anchor" href="#克隆远程库"></a> 克隆远程库</h2>
-<h3 id="命令-2"><a class="markdownIt-Anchor" href="#命令-2"></a> 命令</h3>
-<ul>
-<li><code>git clone &lt;仓库地址&gt;</code></li>
 </ul>
 
             </div>
@@ -307,7 +303,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Git%E5%AD%A6%E4%B9%A0/">Git学习</a>
+                      <a class="hover-with-bg" href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
                     
                   </div>
                 
@@ -315,7 +311,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                      <a class="hover-with-bg" href="/tags/C-11/">C++ 11</a>
                     
                   </div>
                 
@@ -332,9 +328,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/28/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94LeetCode/">
+                      <a href="/2021/07/28/%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E2%80%94%E2%80%94%E9%98%9F%E5%88%97/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">刷题记录——LeetCode</span>
+                        <span class="hidden-mobile">语法总结</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -342,8 +338,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
-                        <span class="hidden-mobile">本地仓库</span>
+                      <a href="/2021/07/28/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%90%84%E7%A7%8D%E5%8F%8D%E8%BD%AC%E5%8F%8A%E8%BF%90%E7%94%A8/">
+                        <span class="hidden-mobile">刷题总结——字符串的各种反转及应用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -368,7 +364,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '7d13af92f08f366ccdc599fb8ce8bb7c'
+            id: 'c1012befa968be282b5bb842dc29fdb7'
           }
         )
         var gitalk = new Gitalk(options);
