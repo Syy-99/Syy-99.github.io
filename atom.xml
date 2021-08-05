@@ -6,7 +6,7 @@
   <link href="https://syy-99.github.io/atom.xml" rel="self"/>
   
   <link href="https://syy-99.github.io/"/>
-  <updated>2021-08-03T03:33:10.763Z</updated>
+  <updated>2021-08-05T08:09:18.690Z</updated>
   <id>https://syy-99.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://syy-99.github.io/2021/08/05/test/"/>
+    <id>https://syy-99.github.io/2021/08/05/test/</id>
+    <published>2021-08-05T08:08:47.000Z</published>
+    <updated>2021-08-05T08:09:18.690Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/.io//0.png" alt="img"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/.io//0.png&quot; alt=&quot;img&quot;&gt;&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>5.标签管理</title>
@@ -46,7 +67,7 @@
     <link href="https://syy-99.github.io/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/"/>
     <id>https://syy-99.github.io/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</id>
     <published>2021-08-03T03:26:55.289Z</published>
-    <updated>2021-08-05T08:03:03.955Z</updated>
+    <updated>2021-08-05T08:03:35.583Z</updated>
     
     <content type="html"><![CDATA[<h1 id="分支管理"><a class="markdownIt-Anchor" href="#分支管理"></a> 分支管理</h1><h2 id="创建与合并分支"><a class="markdownIt-Anchor" href="#创建与合并分支"></a> 创建与合并分支</h2><ul><li><p>默认本地仓库只有一条分支<code>main</code></p><ul><li><code>HEAD</code>指向<code>main</code>,<code>main</code>指向要提交的时间线</li></ul></li><li><p><code>git switch -c &lt;新分支名&gt;</code>:创建并切换新分支，指向<code>main</code>相同的提交</p><ul><li><p>此时<code>HEAD</code>指向新分支。之后的提交都是在新分支下</p><p><img src="/2021/08/03/4/0.png" alt="img"></p></li></ul></li><li><p><code>git branch</code>：查看所有分支</p><ul><li>当前分支名前会有一个*号</li><li><code>-a</code>：查看本地和远程仓库所有分支</li><li><code>-r</code>：查看远程仓库分支</li></ul></li><li><p><code>git merge &lt;分支名&gt;</code>：合并指定分支的工作到当前分支下</p></li><li><p><code>git branch -d &lt;分支名&gt;</code>：删除分支</p><ul><li><code>-D</code>：删除一个没有被合并过得分支</li></ul></li></ul><h2 id="分支冲突"><a class="markdownIt-Anchor" href="#分支冲突"></a> 分支冲突</h2><ul><li><p>合并冲突：</p><ul><li><p>当创建多分支时，如果修改不同文件，则合并不会提示冲突</p></li><li><p>如果修改相同文件，合并时会提示冲突，需要手动修改冲突，确定文件的最终版本</p><p><img src="https://www.liaoxuefeng.com/files/attachments/919023000423040/0" alt="img"></p></li></ul></li><li><p>Git用<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>，<code>=======</code>，<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>标记出不同分支的内容</p></li><li><p>合并策略：</p><ul><li><p>默认使用<code>Fast forward</code>，会直接将Master分支指向Develop分支。在这种模式下，删除分支后，会丢掉分支信息</p><img src="https://raw.githubusercontent.com/Syy-99/Cloud_images/img/20210803114237.png" alt="bg2012070505(1)" style="zoom:50%;"></li><li><p><code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></p><ul><li><p>使用<code>--no-ff</code>参数后，会执行正常合并，在Master分支上生成一个新节点</p><img src="/2021/08/03/4/Users\Administrator.USER-20201209JD\Desktop\bg2012070506(1).png" alt="bg2012070506(1)" style="zoom:50%;"></li></ul></li></ul></li><li><p>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并</p></li></ul><h2 id="分支管理策略"><a class="markdownIt-Anchor" href="#分支管理策略"></a> 分支管理策略</h2><img src="https://www.liaoxuefeng.com/files/attachments/919023260793600/0" alt="img" style="zoom: 80%;"><ul><li><p><mark>主分支main(master)</mark>:代码库应该有一个、且仅有一个主分支。仅用来发布新版本，平时不能在上面干活.</p></li><li><p><mark>工作分支dev</mark>：日常开发。如果想正式对外发布，就在分支上，对Develop分支进行&quot;合并&quot;</p></li><li><p><strong>临时分支</strong>：</p><ul><li><p><mark>功能分支feature-xxx</mark>：为了开发某种特定功能，从<code>dev分支</code>上面分出来的。开发完成后，要再并入dev</p><img src="/2021/08/03/4/Users\Administrator.USER-20201209JD\Desktop\d4806f137df9563d148afb17a51a1134_bg2012070507.png" alt="d4806f137df9563d148afb17a51a1134_bg2012070507" style="zoom:50%;"></li><li><p><mark>预发布分支release-xxx</mark>：指发布正式版本之前（即合并到<code>main分支</code>之前），我们可能需要有一个预发布的版本进行测试。预发布分支是从<code>dev分支</code>上面分出来的，预发布结束以后，必须合并进<code>dev和main分支</code>.</p></li><li><p><mark>修补bug分支fixbug-xxx</mark>：修补bug分支是从<code>main分支</code>上面分出来的。修补结束以后，再合并进<code>main和dev分支</code></p><ul><li><p>bug突然出现，如何保存当前的工作?恢复工作？</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs she">git stash//把当前工作现场“储藏”起来，等以后恢复现场后继续工作<br>git stash list//查看该分支保存的状态<br>git stash pop//在该分支下，恢复之前保存的状态，并删除该记录<br>git stash apply &lt;名字&gt;//恢复指定的状态<br></code></pre></td></tr></table></figure></li><li><p>修补<code>main分支</code>后，如何在<code>dev分支</code>上进行同样的修改操作？</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs she">git chery-pick &lt;commit编号&gt;//复制一个特定的提交到当前分支<br></code></pre></td></tr></table></figure></li></ul></li></ul></li></ul><h2 id="多人协作"><a class="markdownIt-Anchor" href="#多人协作"></a> 多人协作</h2><ul><li><p>当从远程仓库克隆时，实际上Git自动把本地的<code>main</code>分支和远程的<code>main</code>分支对应起来了，并且，远程仓库的默认名称是<code>origin</code></p></li><li><p>分支推送策略：</p><ul><li><code>main</code>分支是主分支，因此要时刻与远程同步；</li><li><code>dev</code>分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；</li><li>bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；</li><li>feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。</li></ul></li><li><p>工作模式：</p><ol><li>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；</li></ol></li></ul><ol start="2"><li><p>如果推送失败，则因为远程分支比你的本地新，需要先用<code>git pull</code>试图合并；</p><ul><li>如果<code>git pull</code>提示<code>no tracking information</code>，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。</li></ul></li><li><p>如果合并有冲突，则解决冲突，并在本地提交；</p><ul><li>用<code>git status</code>查看当前状态、寻找冲突的文件，手动修改</li></ul></li><li><p>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！</p></li></ol><h2 id="rebase"><a class="markdownIt-Anchor" href="#rebase"></a> rebase ???</h2><ul><li>rebase操作可以把本地未push的分叉提交历史整理成直线；</li><li>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</li></ul><h2 id="相关命令"><a class="markdownIt-Anchor" href="#相关命令"></a> 相关命令</h2><ul><li><code>git remote</code>：查看远程库的信息<ul><li><code>-v</code>：显示更详细的信息，显示可以抓取和推送的地址</li></ul></li><li><code>git push origin --delete &lt;远程分支名&gt;</code>：删除远程分支<ul><li><code>git clone -b &lt;指定分支名&gt; &lt;远程仓库地址&gt;</code>：克隆远程库指定分支到本地库</li></ul></li></ul><p><strong>扩展阅读</strong></p><ul><li><a href="http://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略</a></li></ul>]]></content>
     
@@ -506,33 +527,6 @@
       
     <summary type="html">&lt;h1 id=&quot;刷题总结字符串的各种反转及运用&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#刷题总结字符串的各种反转及运用&quot;&gt;&lt;/a&gt; 刷题总结——字符串的各种反转及运用&lt;/h1&gt;
 </summary>
-      
-    
-    
-    
-    <category term="刷题笔记" scheme="https://syy-99.github.io/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="LeetCode刷题" scheme="https://syy-99.github.io/tags/LeetCode%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="C++" scheme="https://syy-99.github.io/tags/C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>刷题总结——字符串KMP算法分析与应用</title>
-    <link href="https://syy-99.github.io/2021/07/28/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84KMP%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>https://syy-99.github.io/2021/07/28/%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84KMP%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
-    <published>2021-07-28T08:21:00.550Z</published>
-    <updated>2021-07-28T08:29:29.085Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="刷题总结字符串的kmp算法分析与应用"><a class="markdownIt-Anchor" href="#刷题总结字符串的kmp算法分析与应用"></a> 刷题总结——字符串的KMP算法分析与应用</h1><h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2><ul><li>KMP的经典思想就是：<strong>当出现字符串不匹配时，可以记录一部分之前已经匹配的文本内容，利用这些信息避免从头再去做匹配。</strong><ul><li>如何记录已经匹配的文本内容，是KMP的重点，也是next数组肩负的重任</li></ul></li><li><mark>next数组</mark>：前缀表（<em>prefix table</em>）<ul><li>前缀表是用来回退的，它记录了模式串(与主串(文本串)不匹配的时候，模式串应该从哪里开始重新匹配</li><li>记录下标i之前（包括i）的字符串中，有多大长度的相同<strong>前缀后缀</strong></li></ul></li><li>最长相等前后缀<ul><li><mark>前缀</mark>：指<strong>不包含最后一个字符</strong>的所有以第一个字符开头的连续子串</li><li><mark>后缀</mark>：指<strong>不包含第一个字符</strong>的所有以最后一个字符结尾的连续子串</li><li><strong>前缀表要求的就是相同前后缀的长度</strong></li></ul></li></ul><h2 id="如何构造前缀表和next数组"><a class="markdownIt-Anchor" href="#如何构造前缀表和next数组"></a> 如何构造前缀表和next数组</h2><ul><li><p>前缀表中记录了模式串中每个位置从 [0,位置] 的最长相等前后缀的长度</p><ul><li>前缀表的长度等于模式串</li></ul></li><li><p>当在 模式表i 处发生不匹配时，只需找到前缀表中i-1的位置处的值，即可知道下次匹配从<code>模式表[前缀表[i-1]]</code>处开始</p></li><li><p>为了简便，通常会将前缀表向右移动并赋初值为-1，得到<code>next数组</code>,这样下次匹配就是<code>模式表[next[i]]</code></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/*构造nextu</span><br><span class="hljs-comment">1. 初始化</span><br><span class="hljs-comment">2. 处理前后缀不同的情况</span><br><span class="hljs-comment">3. 处理前后缀相同的情况</span><br><span class="hljs-comment">整个算法有点动态规划的味道，在前一段完成的基础上，获得下一段的情况</span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getNext</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* next, <span class="hljs-keyword">const</span> string&amp; s)</span> </span>&#123;<br>next[<span class="hljs-number">0</span>] = <span class="hljs-number">-1</span>;<span class="hljs-comment">//先给next[0]赋初值,必定是-1</span><br>    <span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">int</span> k=<span class="hljs-number">-1</span>;<span class="hljs-comment">//记录s[0]-s[j-1]最长相等前缀的后一个位置</span><br>   <span class="hljs-keyword">while</span>(j&lt;s.<span class="hljs-built_in">length</span>()<span class="hljs-number">-1</span>)&#123;<span class="hljs-comment">//因为我们是使用右移的next数字，所以循环的j实际上是给j+1赋值</span><br>    <span class="hljs-keyword">if</span>(k==<span class="hljs-number">-1</span>||s[j]==s[k])&#123;<span class="hljs-comment">//这里加k==-1这个条件，实际上也是一个给next[1]赋初值的条件，因为s[1]不匹配的话，只能用s[0]l来匹配，</span><br>    <span class="hljs-comment">//如果s[j+1]不匹配,考虑0-j的字符串,当s[k]==s[j]时,0-j字符串的k应该是k+1，所以s[j+1]=k+1（之后为了下次循环，k，j也要往前移动一位）</span><br>            j++;k++;<br>         next[j]=k;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-comment">//如果s[j+1]不匹配时，考虑0-j的字符串，当s[j]!=s[k]，0-j的最长相等前缀位置不是k(因为k是0-j-1的)，所以要更新这次的k。因为k是0-j-1的最长相等前缀的后一个位置，所以s[j]!=s[k]最长前缀只可能在0-k-1中出现，那么next[k]就应该是下一个去匹配的位置，进入下一次循环判断直到有s[k]==s[j],那么此时的k就是0-j处的最长前缀的后一个位置</span><br>            k=next[k];<br>        &#125;    <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li></ul><h2 id="题目练习"><a class="markdownIt-Anchor" href="#题目练习"></a> 题目练习</h2><h3 id="在一个串中查找是否出现过另一个串"><a class="markdownIt-Anchor" href="#在一个串中查找是否出现过另一个串"></a> 在一个串中查找是否出现过另一个串</h3><ul><li><p><a href="https://leetcode-cn.com/problems/implement-strstr/">28.Implement strStr()</a></p><ul><li><p>next数组可以优化</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">next[j]=s[j]!=s[k]?k:next[k]<span class="hljs-comment">//next数组优化，避免s[j+1]发生不匹配时，下一个s[next[j+1]]==s[j+1]继续不匹配，需要继续往下匹配</span><br></code></pre></td></tr></table></figure></li></ul></li><li></li></ul><p><strong>扩展阅读</strong></p><ul><li><a href="https://www.cnblogs.com/yjiyjige/p/3263858.html">详解KMP算法</a></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;刷题总结字符串的kmp算法分析与应用&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#刷题总结字符串的kmp算法分析与应用&quot;&gt;&lt;/a&gt; 刷题总结——字符串的KMP算法分析与应用&lt;/h1&gt;
-&lt;h2 id=&quot;概述&quot;&gt;&lt;a class=&quot;mar</summary>
       
     
     
