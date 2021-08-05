@@ -689,30 +689,5 @@
   
   
   
-  <entry>
-    <title>1.Git简介</title>
-    <link href="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/"/>
-    <url>/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/</url>
-    
-    <content type="html"><![CDATA[<h1 id="git简介"><a class="markdownIt-Anchor" href="#git简介"></a> Git简介</h1><h2 id="git起源"><a class="markdownIt-Anchor" href="#git起源"></a> Git起源</h2><ul><li>在2002年以前，世界各地的志愿者把源代码文件通过==diff<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>==的方式发给Linus，然后由Linus本人通过手工方式合并代码</li><li>到了2002年,Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统</li><li>2005,Linux社区牛人试图破解BitKeeper的协议，BitMover公司要收回Linux社区的免费使用权</li><li>Linus花了两周时间自己用C写了一个分布式版本控制系统——Git！一个月之内，Linux系统的源码已经由Git管理了</li></ul><h2 id="版本控制系统"><a class="markdownIt-Anchor" href="#版本控制系统"></a> 版本控制系统 <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></h2><ul><li>集中式：<ul><li>集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。</li><li>集中式版本控制系统最大的毛病就是必须联网才能工作，受限于网速</li></ul></li><li>分布式：<ul><li>分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，工作的时候，就不需要联网</li><li>个人的对库文件的修改只需通过局域网推送给对方即可看到</li><li>分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已</li></ul></li><li>Git是目前世界上最先进的<mark>分布式版本控制系统<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></mark></li></ul><h2 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h2><ul><li><p>Linux：直接用命令行安装</p></li><li><p>Win：在官网下载安装程序，并配置机器名字和地址</p></li><li><p>具体操作互联网搜索即可</p></li><li><p>第一次安装需要配置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;xxx&quot;<br></code></pre></td></tr></table></figure></li></ul><h2 id="版本库"><a class="markdownIt-Anchor" href="#版本库"></a> 版本库</h2><ul><li>版本库（<em>repository</em>)：可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”</li></ul><h3 id="操作过程"><a class="markdownIt-Anchor" href="#操作过程"></a> 操作过程</h3><ul><li><code>git init</code>：在指定目录中使用，可以将该目录变成Git可以管理的仓库<ul><li>会在该目录下生成一个<code>.git</code>目录，是Git用来跟踪管理版本库的，一般不需改动</li><li>该仓库是一个本地仓库</li></ul></li><li><code>git add xxx</code>：把位于指定目录的文件添加到仓库</li><li><code>git commit -m &quot;xxx&quot;</code>：将文件提交到仓库<ul><li>一次commit会将之前所有的add都会提交</li></ul></li></ul><p><strong>扩展阅读</strong></p><ul><li><a href="https://baike.so.com/doc/5903265-6116166.html">百科-版本控制</a></li><li><a href="https://www.cnblogs.com/wx1993/p/7680877.html">集中式（SVN）和分布式（Git）版本控制系统的简单比较</a></li></ul><hr class="footnotes-sep"><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p>diff 命令比较文本文件,它能比较单个文件或者目录内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p></li><li id="fn2" class="footnote-item"><p>一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号 <a href="#fnref2" class="footnote-backref">↩︎</a></p></li><li id="fn3" class="footnote-item"><p>每个人都可以创建一个独立的代码仓库用于管理，各种版本控制的操作都可以在本地完成。每个人修改的代码都可以推送合并到另外一个代码仓库中 <a href="#fnref3" class="footnote-backref">↩︎</a></p></li></ol></section>]]></content>
-    
-    
-    <categories>
-      
-      <category>Git学习</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>Github</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
   
 </search>
