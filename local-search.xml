@@ -4,13 +4,25 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2021/08/05/test/"/>
-    <url>/2021/08/05/test/</url>
+    <title>Github+Hexo搭建个人博客</title>
+    <link href="/2021/08/05/Github+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <url>/2021/08/05/Github+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     
-    <content type="html"><![CDATA[<p><img src="/2021/08/05/test/0.png" alt="img"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="githubhexo搭建个人博客"><a class="markdownIt-Anchor" href="#githubhexo搭建个人博客"></a> Github+Hexo搭建个人博客</h1><h2 id="工具准备"><a class="markdownIt-Anchor" href="#工具准备"></a> 工具准备</h2><ul><li><p>git安装：直接官网下载即可</p></li><li><p>Node.js安装</p><ul><li><a href="https://www.cnblogs.com/biehongli/p/12756256.html">Node的安装与环境变量的配置</a></li></ul></li><li><p>Hexo安装</p><ol><li><p>先创建一个文件夹blog，然后<code>cd</code>到这个文件夹下（或者在这个文件夹下直接右键git bash打开）。</p></li><li><p>输入命令</p><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm install -g hexo-<span class="hljs-keyword">cli</span><br></code></pre></td></tr></table></figure></li><li><p>用<code>hexo -v</code>查看版本</p></li></ol></li></ul><h2 id="博客初始化"><a class="markdownIt-Anchor" href="#博客初始化"></a> 博客初始化</h2><ul><li><p>进入之前创建的文件夹blog，这个文件夹下直接右键git bash打开</p></li><li><p>按顺序输入命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo init<br>hexo generate<br>hexo serve<br></code></pre></td></tr></table></figure></li><li><p>浏览器输入地址 <code>localhost:4000</code>，网页如果成功显示，则说明成功</p></li></ul><h2 id="部署博客"><a class="markdownIt-Anchor" href="#部署博客"></a> 部署博客</h2><ol><li><p>配置博客部署地址</p><ul><li><p>先在Github上创建一个仓库名为<code>&lt;你的用户名&gt;.github.io</code>的仓库</p></li><li><p>打开根目录下的<code>_config.yml</code>文件，找到 Deployment 这个地方，把刚才新建的 Repository 的地址贴过来，然后指定分支为 main 分支</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Deployment</span><br><span class="hljs-comment">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> &#123;<span class="hljs-string">git</span> <span class="hljs-string">repo</span> <span class="hljs-string">ssh</span> <span class="hljs-string">address</span>&#125;<br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">main</span><br></code></pre></td></tr></table></figure></li></ul></li><li><p>安装一个支持 Git 的部署插件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure></li><li><p>安装成功之后，执行部署命令。运行成功后，在仓库中就能看到有新文件上传</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">hexo deploy<br></code></pre></td></tr></table></figure></li></ol><h2 id="配置站点信息"><a class="markdownIt-Anchor" href="#配置站点信息"></a> 配置站点信息</h2><ol><li><p>修改根目录下的 _config.yml 文件，找到 Site 区域，这里面可以配置站点标题 title、副标题 subtitle 等内容、关键字 keywords 等内容</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Site</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">&lt;网站标签页名字&gt;</span><br><span class="hljs-attr">subtitle:</span> <span class="hljs-string">xxxx</span><br><span class="hljs-attr">description:</span><br><span class="hljs-attr">keywords:</span> <span class="hljs-string">&quot;c++ 刷题，xxx&quot;</span><br><span class="hljs-attr">author:</span> <br></code></pre></td></tr></table></figure></li><li><p>设置一下语言，如果要设置为汉语的话可以将 language 的字段设置为 zh-CN，修改如下</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">language:</span> <span class="hljs-string">zh-CN</span><br></code></pre></td></tr></table></figure></li></ol><h2 id="主题相关配置"><a class="markdownIt-Anchor" href="#主题相关配置"></a> 主题相关配置</h2><ul><li><p>不同主题配置可以在GitHub上找帮助文档进行设置</p></li><li><p>这里提供一个链接，设置<strong>next主题</strong>教程</p><p><a href="https://mp.weixin.qq.com/s/3li0n8REcU1DviwWiEYw_A">https://mp.weixin.qq.com/s/3li0n8REcU1DviwWiEYw_A</a></p></li></ul><h2 id="使用出现的问题"><a class="markdownIt-Anchor" href="#使用出现的问题"></a> 使用出现的问题</h2><ul><li><p>如何上传带图片的博客？</p><ol><li>修改根目录下<code>_config.yam</code>的配置项<code>post_asset_folder</code>为true</li><li>下载插件<code>npm install https://github.com/CodeFalling/hexo-asset-image --save</code></li><li>添加md文件时，同时添加一个同名的文件夹，里面放图片，md里面使用<code>![img](&lt;文件夹名&gt;/图片名)</code>即可</li></ol><ul><li><strong>如果是通过npm镜像下，可能不是最新的，需要修改<code>Blog\node_modules\hexo-asset-image\index.js</code>里面<code>var endPos=link.length-1</code></strong></li></ul></li></ul>]]></content>
     
     
+    <categories>
+      
+      <category>杂项</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>杂</tag>
+      
+    </tags>
     
   </entry>
   
