@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>2.本地仓库 - Blog For Everything</title>
+  <title>1.Git简介 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="2.本地仓库">
+            <span class="h2" id="subtitle" title="1.Git简介">
               
             </span>
 
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      880 字
+      891 字
     </span>
   
 
@@ -246,7 +246,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">2.本地仓库</h1>
+            <h1 style="display: none">1.Git简介</h1>
             
               <p class="note note-info">
                 
@@ -255,90 +255,82 @@
               </p>
             
             <div class="markdown-body">
-              <h1 id="本地仓库"><a class="markdownIt-Anchor" href="#本地仓库"></a> 本地仓库</h1>
-<h2 id="仓库版本控制"><a class="markdownIt-Anchor" href="#仓库版本控制"></a> 仓库版本控制</h2>
+              <h1 id="git简介"><a class="markdownIt-Anchor" href="#git简介"></a> Git简介</h1>
+<h2 id="git起源"><a class="markdownIt-Anchor" href="#git起源"></a> Git起源</h2>
 <ul>
-<li><code>git status</code>：查看本地仓库状态</li>
-<li><code>git diff</code>：查看仓库和之前版本的区别</li>
-<li><code>git log</code>：显示从最近的最远的提交日志
+<li>在2002年以前，世界各地的志愿者把源代码文件通过==diff<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>==的方式发给Linus，然后由Linus本人通过手工方式合并代码</li>
+<li>到了2002年,Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统</li>
+<li>2005,Linux社区牛人试图破解BitKeeper的协议，BitMover公司要收回Linux社区的免费使用权</li>
+<li>Linus花了两周时间自己用C写了一个分布式版本控制系统——Git！一个月之内，Linux系统的源码已经由Git管理了</li>
+</ul>
+<h2 id="版本控制系统"><a class="markdownIt-Anchor" href="#版本控制系统"></a> 版本控制系统 <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></h2>
 <ul>
-<li><code>--grapt</code>：显示分支合并图</li>
-<li><code>--pretty=oneline</code>：简化日志信息，将每个提交放在一行显示，<strong>查看的提交数很大时非常有用</strong></li>
+<li>集中式：
+<ul>
+<li>集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。</li>
+<li>集中式版本控制系统最大的毛病就是必须联网才能工作，受限于网速</li>
 </ul>
 </li>
-<li><code>git reset --hard xxx</code>：回退仓库版本xxx
+<li>分布式：
 <ul>
-<li><code>xxx</code>
-<ul>
-<li>Git中用<code>head</code>表示当前版本，上个版本是<code>head^</code>，上上个版本是<code>head^^</code>,也可用<code>head~10</code>来表示上10个版本</li>
-<li>直接用<code>git log</code>中提交<code>commit id（版本号）</code>前几位</li>
+<li>分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，工作的时候，就不需要联网</li>
+<li>个人的对库文件的修改只需通过局域网推送给对方即可看到</li>
+<li>分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已</li>
 </ul>
 </li>
+<li>Git是目前世界上最先进的<mark>分布式版本控制系统<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></mark></li>
 </ul>
-</li>
-<li><code>git reflog</code>：记录使用的每一次命令</li>
-</ul>
-<h2 id="工作区和暂存区"><a class="markdownIt-Anchor" href="#工作区和暂存区"></a> 工作区和暂存区</h2>
-<ul>
-<li><mark>工作区</mark>：就是你在电脑里能看到的目录</li>
-<li><mark>版本库</mark>：工作区有一个隐藏目录<code>.git</code>，这个不算工作区，而是Git的版本库
-<ul>
-<li>版本库中存在一个称为stage(或index)的<mark>暂存区</mark>，还有Git为为我们自动创建的第一个分支<code>main</code>，以及指向<code>master</code>的一个指针叫<code>HEAD</code></li>
-</ul>
-</li>
-</ul>
-<p><img src="../images/0.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h2>
 <ul>
 <li>
-<p>我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
-<p>第一步是用<code>git add</code>把文件添加进去，实际上就是把文件修改添加到暂存区；</p>
-<p>第二步是用<code>git commit</code>提交更改，实际上就是把暂存区的所有内容提交到当前分支。</p>
-<p>因为我们创建Git版本库时，Git自动为我们创建了唯一一个<code>master</code>分支，所以，现在，<code>git commit</code>就是往<code>master</code>分支上提交更改</p>
+<p>Linux：直接用命令行安装</p>
+</li>
+<li>
+<p>Win：在官网下载安装程序，并配置机器名字和地址</p>
+</li>
+<li>
+<p>具体操作互联网搜索即可</p>
+</li>
+<li>
+<p>第一次安装需要配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;xxx&quot;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="管理修改"><a class="markdownIt-Anchor" href="#管理修改"></a> 管理修改</h2>
-<p><strong>为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件</strong></p>
+<h2 id="版本库"><a class="markdownIt-Anchor" href="#版本库"></a> 版本库</h2>
 <ul>
-<li>git每次都会对仓库内发生的修改情况进行记录，只要存在修改就会存在记录</li>
-<li>考虑这样一种情况：第一次修改 -&gt; <code>git add</code> -&gt; 第二次修改 -&gt; <code>git commit</code>
+<li>版本库（<em>repository</em>)：可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”</li>
+</ul>
+<h3 id="操作过程"><a class="markdownIt-Anchor" href="#操作过程"></a> 操作过程</h3>
 <ul>
-<li>add会将第一次修改提交到暂存区，commit只会将暂存区的文件提交</li>
-<li>但是这并不意味着第二次修改不存在了，我们可以再进行add后再提交，仍然可以提交第二次修改</li>
+<li><code>git init</code>：在指定目录中使用，可以将该目录变成Git可以管理的仓库
+<ul>
+<li>会在该目录下生成一个<code>.git</code>目录，是Git用来跟踪管理版本库的，一般不需改动</li>
+<li>该仓库是一个本地仓库</li>
+</ul>
+</li>
+<li><code>git add xxx</code>：把位于指定目录的文件添加到仓库</li>
+<li><code>git commit -m &quot;xxx&quot;</code>：将文件提交到仓库
+<ul>
+<li>一次commit会将之前所有的add都会提交</li>
 </ul>
 </li>
 </ul>
-<h2 id="撤销修改"><a class="markdownIt-Anchor" href="#撤销修改"></a> 撤销修改</h2>
+<p><strong>扩展阅读</strong></p>
 <ul>
-<li><code>git checkout</code> 可以用来新建或者切换分支， 也可以用来回退文件版本</li>
-<li>从 <code>Git 2.23</code> 版本开始引入了两个新的命令：
-<ul>
-<li><code>git switch</code> 切换分支</li>
-<li><code>git restore</code>：还原工作区的文件
-<ul>
-<li><code>--staged</code>:将暂存区的文件从暂存区撤出，但不会更改文件的内容</li>
-<li>如果文件还未add,那么不需要加上面参数；如果一级add,那么回退顺序应该是先回退暂存区，再回退文件（直接回退文件是没用的）</li>
+<li><a target="_blank" rel="noopener" href="https://baike.so.com/doc/5903265-6116166.html">百科-版本控制</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wx1993/p/7680877.html">集中式（SVN）和分布式（Git）版本控制系统的简单比较</a></li>
 </ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>diff 命令比较文本文件,它能比较单个文件或者目录内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
 </li>
-</ul>
+<li id="fn2" class="footnote-item"><p>一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
-<li>如果修改被commit了，那么只能回退版本</li>
-</ul>
-<h2 id="删除文件"><a class="markdownIt-Anchor" href="#删除文件"></a> 删除文件</h2>
-<ul>
-<li>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用<code>rm</code>命令删了</li>
-<li>这个时候，Git知道你删除了文件，因此，工作区和版本库就不一致了，<code>git status</code>命令会立刻告诉你哪些文件被删除了</li>
-<li>现在你有两个选择，
-<ul>
-<li>一是确实要从版本库中删除该文件，那就用命令<code>git rm</code>删掉，并且<code>git commit</code>
-<ul>
-<li>或者用<code>git add &lt;file&gt;</code>删掉</li>
-</ul>
+<li id="fn3" class="footnote-item"><p>每个人都可以创建一个独立的代码仓库用于管理，各种版本控制的操作都可以在本地完成。每个人修改的代码都可以推送合并到另外一个代码仓库中 <a href="#fnref3" class="footnote-backref">↩︎</a></p>
 </li>
-<li>另一种情况是删错了，因为版本库里还有，所以当然可以撤销修改</li>
-</ul>
-</li>
-<li><strong>注意：从来没有被添加到版本库就被删除的文件，是无法恢复的！</strong></li>
-</ul>
+</ol>
+</section>
 
             </div>
             <hr>
@@ -373,21 +365,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
+                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">3.远程仓库</span>
+                        <span class="hidden-mobile">2.本地仓库</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/">
-                        <span class="hidden-mobile">1.Git简介</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
@@ -409,7 +395,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '04cab6eb1dda3e548693d01fd212801d'
+            id: 'e55a0edc0489c5b5e1f7a3b4df5bfd6f'
           }
         )
         var gitalk = new Gitalk(options);
