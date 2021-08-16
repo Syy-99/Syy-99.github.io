@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>2.本地仓库 - Blog For Everything</title>
+  <title>1.Git简介 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="2.本地仓库">
+            <span class="h2" id="subtitle" title="1.Git简介">
               
             </span>
 
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      880 字
+      1.2k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      13
        分钟
     </span>
   
@@ -246,11 +246,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">2.本地仓库</h1>
+            <h1 style="display: none">1.Git简介</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年8月6日 上午
+                  本文最后更新于：2021年8月16日 下午
                 
               </p>
             
@@ -258,25 +258,57 @@
               <h1 id="本地仓库"><a class="markdownIt-Anchor" href="#本地仓库"></a> 本地仓库</h1>
 <h2 id="仓库版本控制"><a class="markdownIt-Anchor" href="#仓库版本控制"></a> 仓库版本控制</h2>
 <ul>
-<li><code>git status</code>：查看本地仓库状态</li>
-<li><code>git diff</code>：查看仓库和之前版本的区别</li>
-<li><code>git log</code>：显示从最近的最远的提交日志
+<li>
+<p><code>git status</code>：查看本地仓库状态</p>
+</li>
+<li>
+<p><code>git diff</code>：比较工作区和暂存区修改</p>
 <ul>
-<li><code>--grapt</code>：显示分支合并图</li>
-<li><code>--pretty=oneline</code>：简化日志信息，将每个提交放在一行显示，<strong>查看的提交数很大时非常有用</strong></li>
+<li><code>git diff head</code>：比较工作区和暂存区快照的差异</li>
+<li><code>git diff --cached head</code>：比较暂存区和最近一次commit后的修改</li>
 </ul>
 </li>
-<li><code>git reset --hard xxx</code>：回退仓库版本xxx
+<li>
+<p><code>git log</code>：显示从最近开始的提交过的版本信息（<strong>包含多种选项，具体情况使用</strong>）</p>
 <ul>
+<li><code>- n</code>：限制数量</li>
+<li><code>-p</code>：展开显示每次提交内容的差异</li>
+<li><code>--author=&quot;xxx&quot;</code>:按提交者名字搜索并显示（非整个单词匹配）</li>
+<li><code>--grep=&quot;xxx&quot;</code>：按指定内容搜索并显示</li>
+<li><code>-- &lt;file&gt;</code>：仅显示包含指定文件修改的commit</li>
+<li><code>--graph</code>：显示分支操作图</li>
+<li><code>--pretty=oneline</code>：显示日志简化信息，每条信息只占一行</li>
+</ul>
+<p><code>gitk</code><strong>可以启动图形化工具来查阅提交历史</strong></p>
+</li>
+<li>
+<p><code>git reset xxx</code>：回退到仓库版本xxx（之后的版本不保留）</p>
+<ul>
+<li><code>--hard</code>：回退的同时，同时会修改工作区到回退版本</li>
 <li><code>xxx</code>
 <ul>
 <li>Git中用<code>head</code>表示当前版本，上个版本是<code>head^</code>，上上个版本是<code>head^^</code>,也可用<code>head~10</code>来表示上10个版本</li>
-<li>直接用<code>git log</code>中提交<code>commit id（版本号）</code>前几位</li>
+<li>直接用<code>git log</code>中显示<code>commit id（版本号）</code>前几位</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><code>git reflog</code>：记录使用的每一次命令</li>
+<li>
+<p><code>git revert xxx</code></p>
+<ul>
+<li>撤销某次commit操作（之后的操作仍然保留）</li>
+</ul>
+</li>
+<li>
+<p><code>git reflog</code>：查看本地所有分支的所有操作记录（包括已经被删除的 commit 记录和 reset 的操作）</p>
+</li>
+<li>
+<p><code>git mv &lt;文件名&gt; &lt;文件新名&gt;</code>：重新命名文件</p>
+<ul>
+<li>同样需要提交修改</li>
+<li>git理解为一次移动操作</li>
+</ul>
+</li>
 </ul>
 <h2 id="工作区和暂存区"><a class="markdownIt-Anchor" href="#工作区和暂存区"></a> 工作区和暂存区</h2>
 <ul>
@@ -287,7 +319,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="../images/0.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919020037470528/0" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li>
 <p>我们把文件往Git版本库里添加的时候，是分两步执行的：</p>
@@ -307,16 +339,26 @@
 </ul>
 </li>
 </ul>
-<h2 id="撤销修改"><a class="markdownIt-Anchor" href="#撤销修改"></a> 撤销修改</h2>
+<h2 id="撤销操作"><a class="markdownIt-Anchor" href="#撤销操作"></a> 撤销操作</h2>
 <ul>
 <li><code>git checkout</code> 可以用来新建或者切换分支， 也可以用来回退文件版本</li>
 <li>从 <code>Git 2.23</code> 版本开始引入了两个新的命令：
 <ul>
 <li><code>git switch</code> 切换分支</li>
-<li><code>git restore</code>：还原工作区的文件
+<li><code>git restore &lt;文件名&gt;</code>：撤销对文件的修改，还原<strong>工作区</strong>的文件
 <ul>
-<li><code>--staged</code>:将暂存区的文件从暂存区撤出，但不会更改文件的内容</li>
-<li>如果文件还未add,那么不需要加上面参数；如果一级add,那么回退顺序应该是先回退暂存区，再回退文件（直接回退文件是没用的）</li>
+<li><code>--staged</code>:将<strong>暂存区</strong>的文件从暂存区撤出，但不会更改文件的内容</li>
+<li>所有如果想完全撤销提交到暂存区的文件，顺序是：暂存区撤销-&gt;工作区撤销</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>git commit --amend</code>：修改最后一次的提交
+<ul>
+<li>紧跟着上次提交使用，可以修改上次提交的说明</li>
+<li>如果刚才提交时忘了暂存某些修改，可以先补上暂存操作，然后再运行 <code>--amend</code> 提交
+<ul>
+<li>两次<code>commit</code>但产生一次提交</li>
 </ul>
 </li>
 </ul>
@@ -334,10 +376,15 @@
 <li>或者用<code>git add &lt;file&gt;</code>删掉</li>
 </ul>
 </li>
-<li>另一种情况是删错了，因为版本库里还有，所以当然可以撤销修改</li>
+<li>另一种情况是删错了，因为版本库里还有，所以当然可以撤销修改
+<ul>
+<li>注意这里说的是版本库，所以包括add的文件</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><strong>注意：从来没有被添加到版本库就被删除的文件，是无法恢复的！</strong></li>
+<li><code>git rm --cached &lt;文件名&gt;</code>：将文件从版本库中删除，但是工作区中不删除</li>
 </ul>
 
             </div>
@@ -375,7 +422,7 @@
                     
                       <a href="/2021/07/27/3.%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">3.远程仓库</span>
+                        <span class="hidden-mobile">1.Git简介</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

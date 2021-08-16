@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>4.分支管理 - Blog For Everything</title>
+  <title>1.Git简介 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="4.分支管理">
+            <span class="h2" id="subtitle" title="1.Git简介">
               
             </span>
 
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      2.2k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      24
        分钟
     </span>
   
@@ -246,11 +246,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">4.分支管理</h1>
+            <h1 style="display: none">1.Git简介</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年8月6日 上午
+                  本文最后更新于：2021年8月16日 下午
                 
               </p>
             
@@ -259,26 +259,47 @@
 <h2 id="创建与合并分支"><a class="markdownIt-Anchor" href="#创建与合并分支"></a> 创建与合并分支</h2>
 <ul>
 <li>
+<p><code>HEAD指针</code>：指向你正在工作中的本地分支的指针</p>
+</li>
+<li>
 <p>默认本地仓库只有一条分支<code>main</code></p>
 <ul>
 <li><code>HEAD</code>指向<code>main</code>,<code>main</code>指向要提交的时间线</li>
 </ul>
 </li>
 <li>
-<p><code>git switch -c &lt;新分支名&gt;</code>:创建并切换新分支，指向<code>main</code>相同的提交</p>
+<p><code>git switch &lt;分支名&gt;</code>:切换分支</p>
 <ul>
+<li>
+<p><code>-c</code> 创建并切换分支，分支指向<code>main</code>相同的提交</p>
+</li>
 <li>
 <p>此时<code>HEAD</code>指向新分支。之后的提交都是在新分支下</p>
 <p><img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/0.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li><code>HEAD</code>指向正在工作的本地分支，随该分支一起移动</li>
+</ul>
 </li>
 </ul>
 </li>
 <li>
-<p><code>git branch</code>：查看所有分支</p>
+<p><code>git branch</code>：查看本地所有分支</p>
 <ul>
 <li>当前分支名前会有一个*号</li>
 <li><code>-a</code>：查看本地和远程仓库所有分支</li>
 <li><code>-r</code>：查看远程仓库分支</li>
+<li><code>-v</code>：查看各分支最后一个提交对象的信息</li>
+<li><code>--merged</code>：查看哪些分支是当前分支的直接上游
+<ul>
+<li>一般来说，列表中没有 <code>*</code> 的分支通常都可以用 <code>git branch -d</code> 来删掉。原因很简单，既然已经把它们所包含的工作整合到了其他分支，删掉也不会损失什么</li>
+</ul>
+</li>
+<li><code>--no-merged</code>：查看尚未合并的工作
+<ul>
+<li>由于这些分支中还包含着尚未合并进来的工作成果，所以简单地用 <code>git branch -d</code> 删除该分支会提示错误，因为那样做会丢失数据</li>
+<li><code>-D</code>：强制删除</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -291,22 +312,43 @@
 </ul>
 </li>
 </ul>
+<h3 id="实际操作总结"><a class="markdownIt-Anchor" href="#实际操作总结"></a> 实际操作总结</h3>
+<ul>
+<li>如果分支切换时，该分支的暂存区或者工作目录里，存在还没有提交的修改，会和你即将检出的分支产生冲突从而阻止 Git 为你切换分支
+<ul>
+<li>要么提交修改，要么使用<code>git stash</code>暂存</li>
+</ul>
+</li>
+<li>分支切换后，Git 会把工作目录的内容恢复为检出某分支时它所指向的那个提交对象的快照</li>
+</ul>
 <h2 id="分支冲突"><a class="markdownIt-Anchor" href="#分支冲突"></a> 分支冲突</h2>
 <ul>
+<li>
+<p><strong>单线的历史分支不存在任何需要解决的分歧</strong></p>
+</li>
 <li>
 <p>合并冲突：</p>
 <ul>
 <li>
 <p>当创建多分支时，如果修改不同文件，则合并不会提示冲突</p>
+<ul>
+<li>任何包含未解决冲突的文件都会以未合并（unmerged）的状态列出</li>
+</ul>
 </li>
 <li>
-<p>如果修改相同文件，合并时会提示冲突，需要手动修改冲突，确定文件的最终版本</p>
+<p>如果在不同分支中修改相同文件，合并时会提示冲突，需要手动修改冲突，确定文件的最终版本</p>
+<ul>
+<li>删除标记</li>
+</ul>
 <p><img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 </li>
 </ul>
 </li>
 <li>
 <p>Git用<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>，<code>=======</code>，<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>标记出不同分支的内容</p>
+<ul>
+<li><code>=======</code> 隔开的上半部分，是 <code>HEAD</code>中的内容，下半部分是在合并分支中的内容</li>
+</ul>
 </li>
 <li>
 <p>合并策略：</p>
@@ -322,6 +364,9 @@
 <p>使用<code>--no-ff</code>参数后，会执行正常合并，在Master分支上生成一个新节点</p>
 <img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/3.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;">
 </li>
+<li>
+<p>当合并的分支，没有祖先关系（即两个不同线分支），Git会用两个分支以及它们的共同祖先进行一次简单的三方合并计算，然后创建一个分支存放合并结果</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -331,7 +376,7 @@
 </li>
 </ul>
 <h2 id="分支管理策略"><a class="markdownIt-Anchor" href="#分支管理策略"></a> 分支管理策略</h2>
-<img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/4.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;">
+<p><img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/4.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li>
 <p><mark>主分支main(master)</mark>:代码库应该有一个、且仅有一个主分支。仅用来发布新版本，平时不能在上面干活.</p>
@@ -344,7 +389,7 @@
 <ul>
 <li>
 <p><mark>功能分支feature-xxx</mark>：为了开发某种特定功能，从<code>dev分支</code>上面分出来的。开发完成后，要再并入dev</p>
-<img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/5.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 50%;">
+<img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/5.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;">
 </li>
 <li>
 <p><mark>预发布分支release-xxx</mark>：指发布正式版本之前（即合并到<code>main分支</code>之前），我们可能需要有一个预发布的版本进行测试。预发布分支是从<code>dev分支</code>上面分出来的，预发布结束以后，必须合并进<code>dev和main分支</code>.</p>
@@ -354,7 +399,7 @@
 <ul>
 <li>
 <p>bug突然出现，如何保存当前的工作?恢复工作？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs she">git stash	//把当前工作现场“储藏”起来，等以后恢复现场后继续工作<br>git stash list	//查看该分支保存的状态<br>git stash pop	//在该分支下，恢复之前保存的状态，并删除该记录<br>git stash apply &lt;名字&gt;	//恢复指定的状态<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs she">git stash	//把当前工作现场“储藏”起来，等以后恢复现场后继续工作<br>git stash list	//查看该分支保存的状态<br>git stash pop	//在该分支下，恢复之前保存的状态，并删除该记录（如果状态属于该分支会删除，如果不属于相当于一个合并操作）<br>git stash apply &lt;名字&gt;	//恢复指定的状态<br></code></pre></td></tr></table></figure>
 </li>
 <li>
 <p>修补<code>main分支</code>后，如何在<code>dev分支</code>上进行同样的修改操作？</p>
@@ -369,6 +414,15 @@
 <ul>
 <li>
 <p>当从远程仓库克隆时，实际上Git自动把本地的<code>main</code>分支和远程的<code>main</code>分支对应起来了，并且，远程仓库的默认名称是<code>origin</code></p>
+<ul>
+<li>
+<p>用 <code>(远程仓库名)/(分支名)</code> 这样的形式表示远程分支</p>
+</li>
+<li>
+<p>它们是一些无法移动的本地分支，只有在 Git 进行网络交互时才会更新</p>
+<img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/6.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;">
+</li>
+</ul>
 </li>
 <li>
 <p>分支推送策略：</p>
@@ -382,31 +436,72 @@
 <li>
 <p>工作模式：</p>
 <ol>
-<li>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；</li>
-</ol>
-</li>
-</ul>
-<ol start="2">
 <li>
-<p>如果推送失败，则因为远程分支比你的本地新，需要先用<code>git pull</code>试图合并；</p>
+<p>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；</p>
+</li>
+<li>
+<p>如果推送失败，则<strong>因为远程分支比你的本地新</strong>，需要先用<code>git pull</code>试图合并来保证本地和远程同步；</p>
+<img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/7.png" srcset="/img/loading.gif" lazyload alt="img" style="zoom:80%;">
 <ul>
 <li>如果<code>git pull</code>提示<code>no tracking information</code>，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。</li>
 </ul>
 </li>
 <li>
 <p>如果合并有冲突，则解决冲突，并在本地提交；</p>
-<ul>
-<li>用<code>git status</code>查看当前状态、寻找冲突的文件，手动修改</li>
-</ul>
+</li>
+<li>
+<p>用<code>git status</code>查看当前状态、寻找冲突的文件，手动修改</p>
 </li>
 <li>
 <p>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！</p>
 </li>
 </ol>
-<h2 id="rebase"><a class="markdownIt-Anchor" href="#rebase"></a> rebase ???</h2>
+</li>
+</ul>
+<h2 id="rebase"><a class="markdownIt-Anchor" href="#rebase"></a> rebase</h2>
 <ul>
-<li>rebase操作可以把本地未push的分叉提交历史整理成直线；</li>
-<li>rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</li>
+<li>
+<p>作用：rebase操作可以把本地未push的分叉提交历史整理成直线；</p>
+</li>
+<li>
+<p>目的：使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
+</li>
+<li>
+<p>示例：</p>
+<p><img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/8.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li>
+<p>通过<code>merge</code>合并这两个分支，会产生一个新的提交对象（C5）</p>
+</li>
+<li>
+<pre class="highlight"><code class="shel">$ git checkout experiment
+$ git rebase master
+    First, rewinding head to replay your work on top of it...
+    Applying: added staged command
+</code></pre>
+<p>会在在 C3 里产生的变化补丁在 C4 的基础上重新打一遍</p>
+</li>
+</ul>
+</li>
+<li>
+<p>原理：回到两个分支最近的共同祖先，根据当前分支（也就是要进行衍合的分支 <code>experiment</code>）后续的历次提交对象（这里只有一个 C3），生成一系列文件补丁，然后以基底分支（也就是主干分支 <code>master</code>）最后一个提交对象（C4）为新的出发点，逐个应用之前准备好的补丁文件，最后会生成一个新的合并提交对象（C3’），从而改写 <code>experiment</code> 的提交历史，使它成为 <code>master</code> 分支的直接下游</p>
+<p><img src="/2021/08/03/4.%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/9.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+</li>
+<li>
+<p>命令：<code>git rebase [主分支] [特性分支]</code> 命令会先取出特性分支 ，然后在主分支上重演</p>
+<ul>
+<li>特性分支必须是从主分支直接分出来的，一步一步走</li>
+<li><code>git rebase --onto &lt;主分支&gt; &lt;特性分支1&gt; &lt;特性分支2&gt;</code>
+<ul>
+<li>特性分支1从主分支分出，特性分支2从特性分支1分出</li>
+<li>取出 <code>主分支</code> 分支，找出 <code>特性分支2</code> 分支和 <code>特性分支1</code> 分支的共同祖先之后的变化，然后把它们在 <code>主分支</code> 上重演一遍</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>注意：<strong>一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。</strong></p>
+</li>
 </ul>
 <h2 id="相关命令"><a class="markdownIt-Anchor" href="#相关命令"></a> 相关命令</h2>
 <ul>
@@ -420,6 +515,7 @@
 <li><code>git clone -b &lt;指定分支名&gt; &lt;远程仓库地址&gt;</code>：克隆远程库指定分支到本地库</li>
 </ul>
 </li>
+<li></li>
 </ul>
 <p><strong>扩展阅读</strong></p>
 <ul>
@@ -461,7 +557,7 @@
                     
                       <a href="/2021/08/03/5.%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">5.标签管理</span>
+                        <span class="hidden-mobile">1.Git简介</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -470,7 +566,7 @@
                     
                     
                       <a href="/2021/08/03/6.%E8%87%AA%E5%AE%9A%E4%B9%89Git/">
-                        <span class="hidden-mobile">6.自定义Git</span>
+                        <span class="hidden-mobile">1.Git简介</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
