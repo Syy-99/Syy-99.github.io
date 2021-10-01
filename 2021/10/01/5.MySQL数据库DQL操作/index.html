@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>1.Git简介 - Blog For Everything</title>
+  <title>5.MySQL数据库DQL操作 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="1.Git简介">
+            <span class="h2" id="subtitle" title="5.MySQL数据库DQL操作">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-27 08:48" pubdate>
-        2021年7月27日 早上
+      <time datetime="2021-10-01 22:39" pubdate>
+        2021年10月1日 晚上
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      901 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      10
        分钟
     </span>
   
@@ -246,7 +246,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">1.Git简介</h1>
+            <h1 style="display: none">5.MySQL数据库DQL操作</h1>
             
               <p class="note note-info">
                 
@@ -255,107 +255,136 @@
               </p>
             
             <div class="markdown-body">
-              <h1 id="git简介"><a class="markdownIt-Anchor" href="#git简介"></a> Git简介</h1>
-<h2 id="git起源"><a class="markdownIt-Anchor" href="#git起源"></a> Git起源</h2>
+              <h1 id="mysql数据库dql操作"><a class="markdownIt-Anchor" href="#mysql数据库dql操作"></a> MySQL数据库DQL操作</h1>
+<h2 id="基本知识"><a class="markdownIt-Anchor" href="#基本知识"></a> 基本知识</h2>
 <ul>
-<li>在2002年以前，世界各地的志愿者把源代码文件通过==diff<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>==的方式发给Linus，然后由Linus本人通过手工方式合并代码</li>
-<li>到了2002年,Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统</li>
-<li>2005,Linux社区牛人试图破解BitKeeper的协议，BitMover公司要收回Linux社区的免费使用权</li>
-<li>Linus花了两周时间自己用C写了一个分布式版本控制系统——Git！一个月之内，Linux系统的源码已经由Git管理了</li>
-</ul>
-<p><img src="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/..%5Cimg%5Cgit.png" srcset="/img/loading.gif" lazyload alt="git"></p>
-<h2 id="版本控制系统"><a class="markdownIt-Anchor" href="#版本控制系统"></a> 版本控制系统<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></h2>
+<li><strong>DQL(数据库查询语言)</strong>：用于查询数据库数据
 <ul>
-<li>集中式：
-<ul>
-<li>集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。</li>
-<li>集中式版本控制系统最大的毛病就是必须联网才能工作，受限于网速</li>
+<li>select</li>
 </ul>
 </li>
-<li>分布式：
+</ul>
+<h2 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT &lt;ALL | DISTINCT&gt;		-- 是否去重<br>&#123;* | [table.field1[as alias1][,table.field2[as alias2]][,...]]&#125;	-- 设置最终结果显示d<br>FROM table_name [as table_alias]<br>  [left | right | inner join table_name2]  -- 联合查询<br>  [WHERE ...]  -- 指定结果需满足的条件<br>  [GROUP BY ...]  -- 指定结果按照哪几个字段来分组<br>  [HAVING]  -- 过滤分组的记录必须满足的次要条件<br>  [ORDER BY ...]  -- 指定查询记录按一个或多个条件排序<br>  [LIMIT &#123;[offset,]row_count | row_countOFFSET offset&#125;];<br>   -- 指定查询的记录从哪条至哪条<br>   <br>-- 在这里[]代表可选的	<br></code></pre></td></tr></table></figure>
+<h2 id="sql执行顺序"><a class="markdownIt-Anchor" href="#sql执行顺序"></a> SQL执行顺序</h2>
+<p><img src="https://img-blog.csdn.net/20180729102302530?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYWRhamluZzI2Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="数据库的列表达式"><a class="markdownIt-Anchor" href="#数据库的列表达式"></a> 数据库的列（表达式）</h2>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> version() 	<span class="hljs-comment">-- 查询系统版本（函数）</span><br><span class="hljs-keyword">select</span> <span class="hljs-number">10</span><span class="hljs-operator">*</span><span class="hljs-number">3</span><span class="hljs-number">-1</span> <span class="hljs-keyword">as</span> 计算机结果	<span class="hljs-comment">-- 用来计算（表达式）</span><br><span class="hljs-keyword">select</span> @<span class="hljs-variable">@auto</span>_increament_increament <span class="hljs-comment">-- 查询自增的步长（变量）</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>数据库中的表达式</strong>：文本值、列、NULL、函数，计算表达式、系统变量</p>
+</blockquote>
+<h2 id="where条件字句"><a class="markdownIt-Anchor" href="#where条件字句"></a> Where条件字句</h2>
 <ul>
-<li>分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，工作的时候，就不需要联网</li>
-<li>个人的对库文件的修改只需通过局域网推送给对方即可看到</li>
-<li>分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已</li>
+<li>作用：检索数据中符合条件的值</li>
 </ul>
-</li>
-<li>Git是目前世界上最先进的<mark>分布式版本控制系统<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></mark></li>
-</ul>
-<h2 id="git-特性"><a class="markdownIt-Anchor" href="#git-特性"></a> Git 特性</h2>
-<ul>
-<li>直接记录快照、而非差异比较
-<ul>
-<li>Git 只关心文件数据的整体是否发生变化，而大多数其他系统则只关心文件内容的具体差异</li>
-<li>实际上，Git 更像是把变化的文件作快照后，记录在一个微型的文件系统中。每次提交更新时，它会纵览一遍所有文件的指纹信息并对文件作一快照，然后保存一个指向这次快照的索引。为提高性能，若文件没有变化，Git 不会再次保存，而只对上次保存的快照作一链接</li>
-</ul>
-</li>
-<li>近乎所有的操作都是本地执行</li>
-<li>时刻保持数据的完整性
-<ul>
-<li>在保存到 Git 之前，所有数据都要进行内容的<strong>校验和</strong>（checksum）计算，并将此结果作为数据的唯一标识和索引</li>
-<li>Git 使用 SHA-1 算法计算数据的校验和，通过对文件的内容或目录的结构计算出一个 SHA-1 哈希值，作为指纹字符串。该字串由 40 个十六进制字符（0-9 及 a-f）组成。<em><strong>所有保存在 Git 数据库中的东西都是用此哈希值来作索引的，而不是靠文件名</strong></em></li>
-</ul>
-</li>
-<li>多数操作仅添加数据</li>
-</ul>
-<h2 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h2>
+<h3 id="逻辑运算符"><a class="markdownIt-Anchor" href="#逻辑运算符"></a> 逻辑运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A and B    &amp;&amp;</td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td>A or B    ||</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td>not A=1  !</td>
+<td>逻辑非</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模糊查询比运算符"><a class="markdownIt-Anchor" href="#模糊查询比运算符"></a> 模糊查询：比运算符</h3>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A is null</td>
+<td>如果A为NULL，结果为真</td>
+</tr>
+<tr>
+<td>A is not null</td>
+<td></td>
+</tr>
+<tr>
+<td>A between xx and xx</td>
+<td>A在xx 和 xx 之间</td>
+</tr>
+<tr>
+<td>A like ‘xxx’</td>
+<td>A和 xxx匹配</td>
+</tr>
+<tr>
+<td>A in (xx,xxx)</td>
+<td>A被包含在(xx,xxx)里面</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>匹配原则：正则匹配</p>
+<p>%：匹配任意个字符</p>
+<p>_：只匹配一个字符</p>
+</blockquote>
+<h2 id="联表查询join"><a class="markdownIt-Anchor" href="#联表查询join"></a> 联表查询Join</h2>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 示例</span><br>slelect A.num,B.name<br><span class="hljs-keyword">from</span> A <span class="hljs-operator">&lt;</span><span class="hljs-keyword">left</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">inner</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">right</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">join</span> B   A.num <span class="hljs-operator">=</span> B.num<br></code></pre></td></tr></table></figure>
+<p><strong>Left join</strong>：显示左边所有的数据，即使B种没有匹配的对应值也会显示；而B种数据在A种没有匹配的就不会显示</p>
+<p><strong>Right join</strong>：和上面说法相反</p>
+<p><strong>Inner join</strong>：只会显示A、B均有匹配的值，所以不会出现未匹配的数据</p>
+<h3 id="自连接"><a class="markdownIt-Anchor" href="#自连接"></a> 自连接</h3>
+<p>自己的表和自己的表连接，<strong>核心：一张表拆成两张一样的表</strong></p>
+<blockquote>
+<p>将表多次命别名，相当于两个表进行操作</p>
+</blockquote>
+<h2 id="分页和排序"><a class="markdownIt-Anchor" href="#分页和排序"></a> 分页和排序</h2>
+<h3 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h3>
+<p><strong>根据指定字段排列行数据</strong></p>
 <ul>
 <li>
-<p>Linux：直接用命令行安装</p>
+<p>升序ASC：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> [列名]   <span class="hljs-comment">-- 默认升序</span><br></code></pre></td></tr></table></figure>
 </li>
 <li>
-<p>Win：在官网下载安装程序，并配置机器名字和地址</p>
-</li>
-<li>
-<p>具体操作互联网搜索即可</p>
-</li>
-<li>
-<p>第一次安装需要配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;xxx&quot;<br>git config --global user.email &quot;email@example.com&quot;<br></code></pre></td></tr></table></figure>
+<p>降序DESC</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> [列名] <span class="hljs-keyword">desc</span>  <span class="hljs-comment">-- 降序排列</span><br></code></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="版本库"><a class="markdownIt-Anchor" href="#版本库"></a> 版本库</h2>
+<h3 id="分页"><a class="markdownIt-Anchor" href="#分页"></a> 分页</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 示例：每页只显示五条数据</span><br><span class="hljs-keyword">select</span> ...<br><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> xx<br>limit <span class="hljs-number">1</span>,<span class="hljs-number">5</span>	<span class="hljs-comment">-- （n - 1）*pageSize</span><br><span class="hljs-comment">-- 【pageSize:页面大小；n:当前页；（n-1）*pageSize:数据起始位置；数据总数/pageSize=当前页数】</span><br></code></pre></td></tr></table></figure>
+<p><strong>格式</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">limit [查询起始下标]，[往下显示的行数]<br><br><span class="hljs-comment">--------</span><br>limit <span class="hljs-number">2</span>,<span class="hljs-number">5</span> <span class="hljs-comment">-- 从第2行数据开始（不包括第2行)，往下显示5个数据</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>所以，如果我们要实现分页的效果，实际上是处理起始数据的行数选择，根据公式（ n - 1)*pageSize 来确定起始数据。</p>
+<p>即，如果想显示第2页数据，（2-1）*5=5，所以起始数据填 5，数据显示从第6行 - 第10行</p>
+</blockquote>
+<blockquote>
+<p>瀑布流：一般图片才会采用</p>
+<p>根据进度条的位置，不断加载数据</p>
+</blockquote>
+<h2 id="子查询和嵌套查询"><a class="markdownIt-Anchor" href="#子查询和嵌套查询"></a> 子查询和嵌套查询</h2>
+<p>where (这个值是计算出来的)</p>
+<p><strong>本质</strong>：在where语句中嵌套一个查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 示例 查询选修了数据库-1的学生</span><br><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> student<br><span class="hljs-keyword">where</span> studentNo <span class="hljs-operator">=</span> (<br>    <span class="hljs-keyword">select</span> studentNo <span class="hljs-keyword">from</span> subject<br>    <span class="hljs-keyword">where</span> subject <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;数据库-1&#x27;</span><br>)<br><br><span class="hljs-comment">-- 也可以联表查询</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>使用子查询，要注意where 里面的子查询返回的列要等于结果。</p>
+<p>所以一般来说，子查询只返回一列结果</p>
+</blockquote>
+<h2 id="group-by"><a class="markdownIt-Anchor" href="#group-by"></a> Group by</h2>
+<p>根据某个字段分组统计</p>
 <ul>
-<li>版本库（<em>repository</em>)：可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”</li>
-<li>工作目录下面的所有文件都不外乎这两种状态：已跟踪或未跟踪。
-<ul>
-<li>已跟踪的文件是指本来就被纳入版本控制管理的文件，在上次快照中有它们的记录，工作一段时间后，它们的状态可能是未更新，已修改或者已放入暂存区。</li>
-<li>而所有其他文件都属于未跟踪文件。它们既没有上次更新时的快照，也不在当前的暂存区域</li>
+<li>可以结合聚合函数统计各组数据</li>
+<li>分组筛选的条件不能用<code>where</code>,要用<code>having</code>来筛选各组</li>
 </ul>
-</li>
-</ul>
-<h3 id="操作过程"><a class="markdownIt-Anchor" href="#操作过程"></a> 操作过程</h3>
-<ul>
-<li><code>git init</code>：在指定目录中使用，可以将该目录变成Git可以管理的仓库
-<ul>
-<li>会在该目录下生成一个<code>.git</code>目录，是Git用来跟踪管理版本库的，一般不需改动</li>
-<li>该仓库是一个本地仓库</li>
-</ul>
-</li>
-<li><code>git add xxx</code>：把位于指定目录的文件添加到仓库</li>
-<li><code>git commit -m &quot;xxx&quot;</code>：将文件提交到仓库
-<ul>
-<li>一次commit会将之前所有的add都会提交</li>
-<li><code>-a</code>，自动将所有已跟踪的文件暂存起来一并提交</li>
-</ul>
-</li>
-</ul>
-<p><strong>扩展阅读</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://baike.so.com/doc/5903265-6116166.html">百科-版本控制</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wx1993/p/7680877.html">集中式（SVN）和分布式（Git）版本控制系统的简单比较</a></li>
-</ul>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>diff 命令比较文本文件,它能比较单个文件或者目录内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn3" class="footnote-item"><p>每个人都可以创建一个独立的代码仓库用于管理，各种版本控制的操作都可以在本地完成。每个人修改的代码都可以推送合并到另外一个代码仓库中 <a href="#fnref3" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
 
             </div>
             <hr>
@@ -365,7 +394,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Git%E5%AD%A6%E4%B9%A0/">Git学习</a>
+                      <a class="hover-with-bg" href="/categories/MySql%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">MySql基础学习</a>
                     
                   </div>
                 
@@ -373,7 +402,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                      <a class="hover-with-bg" href="/tags/MySql/">MySql</a>
                     
                   </div>
                 
@@ -390,15 +419,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
+                      <a href="/2021/10/01/6.MySQL%E5%87%BD%E6%95%B0/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2.本地仓库</span>
+                        <span class="hidden-mobile">6.MySQL函数</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/10/01/4.MySQL%E6%95%B0%E6%8D%AE%E5%BA%93DML%E6%93%8D%E4%BD%9C/">
+                        <span class="hidden-mobile">4.MySQL数据库DML操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -420,7 +455,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'e55a0edc0489c5b5e1f7a3b4df5bfd6f'
+            id: '5bcf63b23110e9a11ef38d2d247f12f6'
           }
         )
         var gitalk = new Gitalk(options);

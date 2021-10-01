@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>1.Git简介 - Blog For Everything</title>
+  <title>10.规范化数据库设计 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="1.Git简介">
+            <span class="h2" id="subtitle" title="10.规范化数据库设计">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-27 08:48" pubdate>
-        2021年7月27日 早上
+      <time datetime="2021-10-01 22:39" pubdate>
+        2021年10月1日 晚上
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      595 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      6
        分钟
     </span>
   
@@ -246,7 +246,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">1.Git简介</h1>
+            <h1 style="display: none">10.规范化数据库设计</h1>
             
               <p class="note note-info">
                 
@@ -255,107 +255,62 @@
               </p>
             
             <div class="markdown-body">
-              <h1 id="git简介"><a class="markdownIt-Anchor" href="#git简介"></a> Git简介</h1>
-<h2 id="git起源"><a class="markdownIt-Anchor" href="#git起源"></a> Git起源</h2>
+              <h1 id="规范化数据库设计"><a class="markdownIt-Anchor" href="#规范化数据库设计"></a> 规范化数据库设计</h1>
+<h2 id="为什们需要设计"><a class="markdownIt-Anchor" href="#为什们需要设计"></a> 为什们需要设计？</h2>
+<p><strong>当数据库比较复杂的时候，我们对数据库进行设计</strong></p>
 <ul>
-<li>在2002年以前，世界各地的志愿者把源代码文件通过==diff<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>==的方式发给Linus，然后由Linus本人通过手工方式合并代码</li>
-<li>到了2002年,Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统</li>
-<li>2005,Linux社区牛人试图破解BitKeeper的协议，BitMover公司要收回Linux社区的免费使用权</li>
-<li>Linus花了两周时间自己用C写了一个分布式版本控制系统——Git！一个月之内，Linux系统的源码已经由Git管理了</li>
-</ul>
-<p><img src="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/..%5Cimg%5Cgit.png" srcset="/img/loading.gif" lazyload alt="git"></p>
-<h2 id="版本控制系统"><a class="markdownIt-Anchor" href="#版本控制系统"></a> 版本控制系统<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></h2>
+<li>糟糕的数据库设计
 <ul>
-<li>集中式：
-<ul>
-<li>集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。</li>
-<li>集中式版本控制系统最大的毛病就是必须联网才能工作，受限于网速</li>
+<li>数据冗余，浪费空间</li>
+<li>（自带外键）数据库插入和删除麻烦</li>
+<li>程序的性能差</li>
 </ul>
 </li>
-<li>分布式：
+<li>良好的数据库设计
 <ul>
-<li>分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，工作的时候，就不需要联网</li>
-<li>个人的对库文件的修改只需通过局域网推送给对方即可看到</li>
-<li>分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已</li>
-</ul>
-</li>
-<li>Git是目前世界上最先进的<mark>分布式版本控制系统<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></mark></li>
-</ul>
-<h2 id="git-特性"><a class="markdownIt-Anchor" href="#git-特性"></a> Git 特性</h2>
-<ul>
-<li>直接记录快照、而非差异比较
-<ul>
-<li>Git 只关心文件数据的整体是否发生变化，而大多数其他系统则只关心文件内容的具体差异</li>
-<li>实际上，Git 更像是把变化的文件作快照后，记录在一个微型的文件系统中。每次提交更新时，它会纵览一遍所有文件的指纹信息并对文件作一快照，然后保存一个指向这次快照的索引。为提高性能，若文件没有变化，Git 不会再次保存，而只对上次保存的快照作一链接</li>
-</ul>
-</li>
-<li>近乎所有的操作都是本地执行</li>
-<li>时刻保持数据的完整性
-<ul>
-<li>在保存到 Git 之前，所有数据都要进行内容的<strong>校验和</strong>（checksum）计算，并将此结果作为数据的唯一标识和索引</li>
-<li>Git 使用 SHA-1 算法计算数据的校验和，通过对文件的内容或目录的结构计算出一个 SHA-1 哈希值，作为指纹字符串。该字串由 40 个十六进制字符（0-9 及 a-f）组成。<em><strong>所有保存在 Git 数据库中的东西都是用此哈希值来作索引的，而不是靠文件名</strong></em></li>
-</ul>
-</li>
-<li>多数操作仅添加数据</li>
-</ul>
-<h2 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h2>
-<ul>
-<li>
-<p>Linux：直接用命令行安装</p>
-</li>
-<li>
-<p>Win：在官网下载安装程序，并配置机器名字和地址</p>
-</li>
-<li>
-<p>具体操作互联网搜索即可</p>
-</li>
-<li>
-<p>第一次安装需要配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;xxx&quot;<br>git config --global user.email &quot;email@example.com&quot;<br></code></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="版本库"><a class="markdownIt-Anchor" href="#版本库"></a> 版本库</h2>
-<ul>
-<li>版本库（<em>repository</em>)：可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”</li>
-<li>工作目录下面的所有文件都不外乎这两种状态：已跟踪或未跟踪。
-<ul>
-<li>已跟踪的文件是指本来就被纳入版本控制管理的文件，在上次快照中有它们的记录，工作一段时间后，它们的状态可能是未更新，已修改或者已放入暂存区。</li>
-<li>而所有其他文件都属于未跟踪文件。它们既没有上次更新时的快照，也不在当前的暂存区域</li>
+<li>节省内存空间</li>
+<li>保证数据库的完整性</li>
+<li>方便我们开发系统</li>
 </ul>
 </li>
 </ul>
-<h3 id="操作过程"><a class="markdownIt-Anchor" href="#操作过程"></a> 操作过程</h3>
+<h2 id="数据库设计步骤"><a class="markdownIt-Anchor" href="#数据库设计步骤"></a> 数据库设计步骤</h2>
 <ul>
-<li><code>git init</code>：在指定目录中使用，可以将该目录变成Git可以管理的仓库
+<li>分析需求：分析业务和需要处理的数据库的需求
 <ul>
-<li>会在该目录下生成一个<code>.git</code>目录，是Git用来跟踪管理版本库的，一般不需改动</li>
-<li>该仓库是一个本地仓库</li>
+<li>分析要用的表，以及表中需要保存的信息</li>
+<li>提取和表相关的实体类，讲需求落实到表的每一个字段</li>
 </ul>
 </li>
-<li><code>git add xxx</code>：把位于指定目录的文件添加到仓库</li>
-<li><code>git commit -m &quot;xxx&quot;</code>：将文件提交到仓库
+<li>概要设计：设计关系图E-R图
 <ul>
-<li>一次commit会将之前所有的add都会提交</li>
-<li><code>-a</code>，自动将所有已跟踪的文件暂存起来一并提交</li>
+<li>标识实体之间的关系</li>
 </ul>
 </li>
 </ul>
-<p><strong>扩展阅读</strong></p>
+<h2 id="三大范式"><a class="markdownIt-Anchor" href="#三大范式"></a> 三大范式</h2>
+<h3 id="第一范式1nf"><a class="markdownIt-Anchor" href="#第一范式1nf"></a> 第一范式(1NF)</h3>
+<p><strong>原子性</strong>：要求数据库表的每一列都是不可分割的原子数据项</p>
+<h3 id="第二范式2nf"><a class="markdownIt-Anchor" href="#第二范式2nf"></a> 第二范式(2NF)</h3>
+<p>前提：满足第一范式</p>
+<p><strong>要求表中的每一列都和主键相关库，而不能只与主键的某一部分相关（主要针对联合主键而言）</strong>、</p>
+<p>示例：联合主键（A,B)，但表中C、D和A、B相关，E和B相关，那么对于表（A,B,C,D,E）来说，就不满足第二范式。</p>
+<p>​		 因为表的非主键列和主键不是完全相关，即不是：所有非主键列都是和（A,B)相关。</p>
+<p>​		 那么就需要拆分表为（A,C,D)，(B，E)两个表</p>
+<h3 id="第三范式3nf"><a class="markdownIt-Anchor" href="#第三范式3nf"></a> 第三范式(3NF)</h3>
+<p>前提：满足第二范式</p>
+<p><strong>确保表中的每一列数据都和主键直接相关，而不能间接相关（在2NF的基础上消除传递依赖）</strong></p>
+<p>示例：假设表中所有非主键列都完全依赖于主键（满足2NF），但是，有一列C实际上直接相关的是B（也就是说 主键-&gt;B-&gt;C,传递依赖也满足2NF)</p>
+<p>​		 所以我们要把(B,C)单独成表，删除原表中的C(因为原表通过B就可以找到C的信息)</p>
+<blockquote>
+<p>规范型 和 性能的问题</p>
+<p>阿里：关联查询的表不超过3个</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://baike.so.com/doc/5903265-6116166.html">百科-版本控制</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wx1993/p/7680877.html">集中式（SVN）和分布式（Git）版本控制系统的简单比较</a></li>
+<li>考虑商业化的需求和目标，数据库的性能更重要</li>
+<li>故意给表增加一些冗余的字段（从多表查询变为单表查询）</li>
+<li>故意增加一些计算列（从大数据量降低为小数据量）</li>
 </ul>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>diff 命令比较文本文件,它能比较单个文件或者目录内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn3" class="footnote-item"><p>每个人都可以创建一个独立的代码仓库用于管理，各种版本控制的操作都可以在本地完成。每个人修改的代码都可以推送合并到另外一个代码仓库中 <a href="#fnref3" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
+</blockquote>
 
             </div>
             <hr>
@@ -365,7 +320,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Git%E5%AD%A6%E4%B9%A0/">Git学习</a>
+                      <a class="hover-with-bg" href="/categories/MySql%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">MySql基础学习</a>
                     
                   </div>
                 
@@ -373,7 +328,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                      <a class="hover-with-bg" href="/tags/MySql/">MySql</a>
                     
                   </div>
                 
@@ -390,15 +345,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2.本地仓库</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/10/01/9.%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/">
+                        <span class="hidden-mobile">9.权限管理和备份</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -420,7 +375,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'e55a0edc0489c5b5e1f7a3b4df5bfd6f'
+            id: 'ddf4afc4222b1915ca68a818d2b69aa9'
           }
         )
         var gitalk = new Gitalk(options);

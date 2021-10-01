@@ -1,0 +1,825 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="各类学习笔记">
+  <meta name="author" content="shen yayu">
+  <meta name="keywords" content="">
+  
+  <title>2.MySQL数据库简介 - Blog For Everything</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"syy-99.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Blog For Everything" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Shen yanyu's Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/%E6%96%87%E7%AB%A0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="2.MySQL数据库简介">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-01 22:39" pubdate>
+        2021年10月1日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2.MySQL数据库简介</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年10月1日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="mysql数据库简介"><a class="markdownIt-Anchor" href="#mysql数据库简介"></a> MySQL数据库简介</h1>
+<h2 id="数据库控制"><a class="markdownIt-Anchor" href="#数据库控制"></a> 数据库控制</h2>
+<p><strong>命令行操作数据库</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql -u root -p123456		-- 连接数据库<br><br>update mysql.user set authentication_string=password(&#x27;123456&#x27;) where user=&#x27;root&#x27; and Host = &#x27;localhost&#x27;;	-- 更新密码<br>flush privileges;	-- 刷新权限<br><br>-----------------------------------------<br>show tables;		-- 查看数据库所有的表<br>describe 表名；	-- 显示数据库中表的信息<br><br>exit;	-- 退出连接<br><br>--	单行注释<br>/*  */	-- 多行注释<br></code></pre></td></tr></table></figure>
+<h3 id="show-命令"><a class="markdownIt-Anchor" href="#show-命令"></a> show 命令</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs mysql">show databases; -- 显示mysql中所有数据库的名称。<br><br>-- 如果当前没有使用 use 选择数据库，那么对所有表操作都要带上其对应d<br>show tables或show tables from database_name; -- 显示当前数据库中所有表的名称。<br>show table status; -- 显示当前使用或者指定的database中的每个表的信息。信息包括表类型和表的最新更新时间。<br>show columns from database_name.table_name; -- 显示表中列名称。<br>	desc 表名		-- 显示表的结构<br>show index from table_name; -- 显示表的索引。<br><br>show grants for user_name; -- 显示一个用户的权限，显示结果类似于grant 命令。<br>show status; -- 显示一些系统特定资源的信息，例如，正在运行的线程数量。<br>show variables; -- 显示系统变量的名称和值。<br>show processlist; -- 显示系统中正在运行的所有进程，也就是当前正在执行的查询。大多数用户可以查看他们自己的进程，但是如果他们拥有process权限，就可以查看所有人的进程，包括密码。<br>show privileges; -- 显示服务器所支持的不同权限。<br><br>show create database database_name; -- 显示create database 语句是否能够创建指定的数据库。<br>show create table table_name; -- 显示create database 语句是否能够创建指定的数据库。<br><br>show logs; -- 显示BDB存储引擎的日志。<br>show warnings; -- 显示最后一个执行的语句所产生的错误、警告和通知。<br>show errors; -- 只显示最后一个执行语句所产生的错误。<br><br>show [storage] engines; 	-- 显示安装后的可用存储引擎和默认引擎。<br>show character set;		-- 显示服务器支持的数据集<br>show innodb status; -- 显示innoDB存储引擎的状态。<br></code></pre></td></tr></table></figure>
+<h2 id="数据库表的列类型"><a class="markdownIt-Anchor" href="#数据库表的列类型"></a> 数据库表的列类型</h2>
+<h3 id="数值类型"><a class="markdownIt-Anchor" href="#数值类型"></a> 数值类型</h3>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7JZX1D0neUIMjSFiazUGK15QLXRrfmQjbUt3O7sLw0KKv9UtriaTr60JspXIZ69HkeOiagz86CE3a9Wg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" lazyload alt="图片" style="zoom:80%;">
+<ul>
+<li><code>int(M)</code>：M指示最大显示宽度。显示宽度与存储大小或类似所包含值的范围无关</li>
+</ul>
+<h3 id="字符串类型"><a class="markdownIt-Anchor" href="#字符串类型"></a> 字符串类型</h3>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7JZX1D0neUIMjSFiazUGK15QsjOPftNfn1ibXSP8OIYnsJaaPC8da61jCzcbdkqbApibQWgQ7KBjYbuw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" lazyload alt="图片" style="zoom:80%;">
+<h3 id="日期和时间型类型"><a class="markdownIt-Anchor" href="#日期和时间型类型"></a> 日期和时间型类型</h3>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/uJDAUKrGC7JZX1D0neUIMjSFiazUGK15Qcib3OwGtWEJkEE2biaa4jT3xokY1UicPT1MQcQNsa1EsjiaIqM1vvyUPjg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" lazyload alt="图片" style="zoom:80%;">
+<h3 id="null值"><a class="markdownIt-Anchor" href="#null值"></a> NULL值</h3>
+<ul>
+<li>理解为 “没有值” 或 “未知值”</li>
+<li>不要用NULL进行算术运算 , 结果仍为NULL</li>
+</ul>
+<h2 id="数据库表的字段属性"><a class="markdownIt-Anchor" href="#数据库表的字段属性"></a> 数据库表的字段属性</h2>
+<p><strong>UnSigned</strong></p>
+<ul>
+<li>无符号的</li>
+<li>声明该数据列不允许负数 .</li>
+</ul>
+<p><strong>ZEROFILL</strong></p>
+<ul>
+<li>0填充的</li>
+<li>不足位数的用0来填充 , 如int(3),5则为005</li>
+</ul>
+<p><strong>Auto_InCrement</strong></p>
+<ul>
+<li>
+<p><em>自动增长</em>的 , 每添加一条数据 , 自动在上一个记录数上加 1(默认)</p>
+</li>
+<li>
+<p>通常用于设置<strong>主键</strong> , 且为整数类型</p>
+</li>
+<li>
+<p>可定义起始值和步长</p>
+</li>
+<li>
+<ul>
+<li>当前表设置步长(AUTO_INCREMENT=100) : 只影响当前表</li>
+<li>SET @@auto_increment_increment=5 ; 影响所有使用自增的表(全局)</li>
+</ul>
+</li>
+</ul>
+<p><strong>NULL 和 NOT NULL</strong></p>
+<ul>
+<li>默认为NULL , 即该列允许为空</li>
+<li>如果设置为NOT NULL , 则该列必须有值</li>
+</ul>
+<p><strong>DEFAULT</strong></p>
+<ul>
+<li>用于设置默认值</li>
+<li>例如,性别字段,默认为&quot;男&quot; , 否则为 “女” ; 若无指定该列的值 , 则默认值为&quot;男&quot;的值</li>
+</ul>
+<blockquote>
+<p>拓展：阿里云项目数据库规范</p>
+<p>每一个表都要有这几个字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">id		主键<br>version		乐观锁<br>is_delete	伪删除<br>gmt_create	创建时间<br>gmt_update	修改时间<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="数据库表的引擎"><a class="markdownIt-Anchor" href="#数据库表的引擎"></a> 数据库表的引擎</h2>
+<p><strong>默认使用 INNODB</strong></p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>InnoDB</th>
+<th>MYISAM</th>
+<th>Memory</th>
+<th>Archive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存储限制</td>
+<td>64TB</td>
+<td>256TB</td>
+<td>RAM</td>
+<td>None</td>
+</tr>
+<tr>
+<td>支持<mark>事务<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></mark></td>
+<td><strong>Y</strong></td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+<tr>
+<td>支持<mark>全文索引<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></mark></td>
+<td>N</td>
+<td><strong>Y</strong></td>
+<td>N</td>
+<td></td>
+</tr>
+<tr>
+<td>支持哈希索引</td>
+<td>N</td>
+<td>N</td>
+<td><strong>Y</strong></td>
+<td>N</td>
+</tr>
+<tr>
+<td>支持数据缓存</td>
+<td><strong>Y</strong></td>
+<td>N</td>
+<td>N/A</td>
+<td>N</td>
+</tr>
+<tr>
+<td>支持外键</td>
+<td><strong>Y</strong></td>
+<td>N</td>
+<td>N</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>选择策略：
+<ul>
+<li>如果要提供提交、回滚、崩溃恢复能力的事物安全（ACID兼容）能力，并要求实现并发控制，InnoDB是一个好的选择</li>
+<li>如果数据表主要用来插入和查询记录，则MyISAM引擎能提供较高的处理效率</li>
+<li>如果只是临时存放数据，数据量不大，并且不需要较高的数据安全性，可以选择将数据保存在内存中的Memory引擎
+<ul>
+<li>MySQL中使用该引擎作为临时表，存放查询的中间结果</li>
+</ul>
+</li>
+<li>如果只有INSERT和SELECT操作，可以选择Archive，Archive支持高并发的插入操作，但是本身不是事务安全的。
+<ul>
+<li>Archive非常适合存储归档数据，如记录日志信息可以使用Archive</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据库表的在物理空间的位置"><a class="markdownIt-Anchor" href="#数据库表的在物理空间的位置"></a> 数据库表的在物理空间的位置</h2>
+<ul>
+<li>
+<p>MySQL数据表以文件方式存放在磁盘中</p>
+</li>
+<li>
+<ul>
+<li>包括表文件 , 数据文件 , 以及数据库的选项文件</li>
+<li>位置 : Mysql安装目录<code>\data\</code>下存放数据表 . 目录名对应数据库名 , 该目录下文件名对应数据表</li>
+</ul>
+</li>
+<li>
+<p>文件类型：</p>
+<ul>
+<li><code>*.frm</code> ：存储表的列信息（表的结构）</li>
+<li><code>*.MYD</code> ：数据文件</li>
+<li><code>*.MYI</code>：索引文件</li>
+<li><code>*.ibd</code>：数据+索引</li>
+</ul>
+</li>
+<li>
+<p>具体文件介绍</p>
+<table>
+<thead>
+<tr>
+<th>文件结构名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ibdata1</td>
+<td>系统数据字典信息（元数据信息），undo表空间数据</td>
+</tr>
+<tr>
+<td>ib_logfiel0~ib_logfile1</td>
+<td>REDO日志文件，事务日志文件</td>
+</tr>
+<tr>
+<td>ibtmp1</td>
+<td>临时表空间磁盘位置，存储临时表</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>ibdata1存储所有InnoDB引擎的表的元信息和undo信息</p>
+<p>各个表.idb文件存储自己的数据行和索引信息</p>
+</blockquote>
+</li>
+<li>
+<p>一张InnoDB表由一个 <code>*.frm</code>文件 、一个<code>*.idb</code>文件, 以及上一级目录的<code>ibdata1</code>文件；</p>
+<p>一张MyISAM表由<code>.frm</code>、<code>MYD</code>、<code>MYI</code>组成</p>
+</li>
+</ul>
+<h2 id="数据库表的字符集"><a class="markdownIt-Anchor" href="#数据库表的字符集"></a> 数据库表的字符集</h2>
+<p>我们可为数据库,数据表,数据列设定不同的字符集，设定方法 :</p>
+<ul>
+<li>
+<p>创建时通过命令来设置 , 如 : <code>CREATE TABLE 表名()CHARSET = utf8;</code></p>
+</li>
+<li>
+<p>如无设定 , 则根据MySQL数据库配置文件<code>my.ini</code> 中的参数设定</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">character-set-server</span>=utf8<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>不建修改配置文件，这样会导致sql语句的移植性降低</p>
+</blockquote>
+<h2 id="数据库表的外键了解"><a class="markdownIt-Anchor" href="#数据库表的外键了解"></a> 数据库表的外键（了解）</h2>
+<h3 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h3>
+<p>如果公共关键字在一个关系中是主关键字，那么这个公共关键字被称为另一个关系的外键。</p>
+<p>由此可见，外键表示了两个关系之间的相关联系。以另一个关系的外键作主关键字的表被称为<strong>主表</strong>，具有此外键的表被称为主表的<strong>从表</strong>。</p>
+<blockquote>
+<p>引用别人的表——主表；</p>
+<p>被别人引用的表——从表；</p>
+</blockquote>
+<h3 id="作用"><a class="markdownIt-Anchor" href="#作用"></a> 作用</h3>
+<p>保持数据<strong>一致性</strong>，<strong>完整性</strong>，主要目的是控制存储在外键表中的数据<strong>约束</strong>，使两张表形成关联。</p>
+<blockquote>
+<p>主表中的外键只能引用外表中的对应列的值或使用空值。</p>
+</blockquote>
+<h3 id="mysql命令操作"><a class="markdownIt-Anchor" href="#mysql命令操作"></a> MySQL命令操作</h3>
+<ul>
+<li>
+<p>创建外键</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 创建外键的方式一 : 创建子表同时创建外键<br><br>-- 年级表 (id\年级名称)<br>CREATE TABLE `grade` (<br>`gradeid` INT(10) NOT NULL AUTO_INCREMENT COMMENT &#x27;年级ID&#x27;,<br>`gradename` VARCHAR(50) NOT NULL COMMENT &#x27;年级名称&#x27;,<br>PRIMARY KEY (`gradeid`)<br>) ENGINE=INNODB DEFAULT CHARSET=utf8<br><br>-- 学生信息表 (学号,姓名,性别,年级,手机,地址,出生日期,邮箱,身份证号)<br>CREATE TABLE `student` (<br>`studentno` INT(4) NOT NULL COMMENT &#x27;学号&#x27;,<br>`studentname` VARCHAR(20) NOT NULL DEFAULT &#x27;匿名&#x27; COMMENT &#x27;姓名&#x27;,<br>`sex` TINYINT(1) DEFAULT &#x27;1&#x27; COMMENT &#x27;性别&#x27;,<br>`gradeid` INT(10) DEFAULT NULL COMMENT &#x27;年级&#x27;,<br>PRIMARY KEY (`studentno`),<br>KEY `FK_gradeid` (`gradeid`),	-- 定义外键key<br>CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade` (`gradeid`)	-- 给外键添加约束（执行引用）<br>) ENGINE=INNODB DEFAULT CHARSET=utf8<br><br>--------------------------------------------<br>-- 创建外键方式二 : 创建子表完毕后,修改子表字段 添加外键约束<br>ALTER TABLE `student`<br>ADD CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade` (`gradeid`);<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>删除外键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mysql">-- 删除外键<br>ALTER TABLE student DROP FOREIGN KEY FK_gradeid;<br>-- 发现执行完上面的,索引还在,所以还要删除索引<br>-- 注:这个索引是建立外键的时候默认生成的<br>ALTER TABLE student DROP INDEX FK_gradeid;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>删除具有主外键关系的表时 , 要先删子表 , 后删主表</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>以上操作都是<strong>物理外键</strong>、数据库级别的外键，不建议使用</p>
+<ul>
+<li>原因：对于数据库的所有外键的每次插入、更新和删除后，数据库服务器进行完整性检查是一个耗费时间和资源的过程，它可能影响性能</li>
+</ul>
+<p><strong>最佳实践</strong></p>
+<ul>
+<li>数据库就是单纯的表，只用来存数据，只有行、列</li>
+<li>我们想使用多张表，想使用外键，可以使用程序实现（联合查询）</li>
+</ul>
+</blockquote>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><strong>事务</strong>是在数据库上按照一定的逻辑顺序执行的任务序列,是并发控制的单位。这些操作要么都做，要么都不做，不可分割 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><strong>原理</strong>是先定义一个词库，然后在文章中查找每个词条(term)出现的频率和位置，把这样的频率和位置信息按照词库的顺序归纳 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/MySql%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">MySql基础学习</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MySql/">MySql</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/01/3.MySQL%E6%95%B0%E6%8D%AE%E5%BA%93DDL%E6%93%8D%E4%BD%9C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">3.MySQL数据库DDL操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/01/1.%E5%88%9D%E5%A7%8BMySQL/">
+                        <span class="hidden-mobile">1.初始MySQL</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '945e4976db3c506ae7acd570c41455a4'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

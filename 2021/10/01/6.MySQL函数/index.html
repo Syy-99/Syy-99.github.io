@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>1.Git简介 - Blog For Everything</title>
+  <title>6.MySQL函数 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="1.Git简介">
+            <span class="h2" id="subtitle" title="6.MySQL函数">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-27 08:48" pubdate>
-        2021年7月27日 早上
+      <time datetime="2021-10-01 22:39" pubdate>
+        2021年10月1日 晚上
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      551 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      7
        分钟
     </span>
   
@@ -246,7 +246,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">1.Git简介</h1>
+            <h1 style="display: none">6.MySQL函数</h1>
             
               <p class="note note-info">
                 
@@ -255,107 +255,75 @@
               </p>
             
             <div class="markdown-body">
-              <h1 id="git简介"><a class="markdownIt-Anchor" href="#git简介"></a> Git简介</h1>
-<h2 id="git起源"><a class="markdownIt-Anchor" href="#git起源"></a> Git起源</h2>
-<ul>
-<li>在2002年以前，世界各地的志愿者把源代码文件通过==diff<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>==的方式发给Linus，然后由Linus本人通过手工方式合并代码</li>
-<li>到了2002年,Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统</li>
-<li>2005,Linux社区牛人试图破解BitKeeper的协议，BitMover公司要收回Linux社区的免费使用权</li>
-<li>Linus花了两周时间自己用C写了一个分布式版本控制系统——Git！一个月之内，Linux系统的源码已经由Git管理了</li>
-</ul>
-<p><img src="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/..%5Cimg%5Cgit.png" srcset="/img/loading.gif" lazyload alt="git"></p>
-<h2 id="版本控制系统"><a class="markdownIt-Anchor" href="#版本控制系统"></a> 版本控制系统<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></h2>
-<ul>
-<li>集中式：
-<ul>
-<li>集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。</li>
-<li>集中式版本控制系统最大的毛病就是必须联网才能工作，受限于网速</li>
-</ul>
-</li>
-<li>分布式：
-<ul>
-<li>分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，工作的时候，就不需要联网</li>
-<li>个人的对库文件的修改只需通过局域网推送给对方即可看到</li>
-<li>分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已</li>
-</ul>
-</li>
-<li>Git是目前世界上最先进的<mark>分布式版本控制系统<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></mark></li>
-</ul>
-<h2 id="git-特性"><a class="markdownIt-Anchor" href="#git-特性"></a> Git 特性</h2>
-<ul>
-<li>直接记录快照、而非差异比较
-<ul>
-<li>Git 只关心文件数据的整体是否发生变化，而大多数其他系统则只关心文件内容的具体差异</li>
-<li>实际上，Git 更像是把变化的文件作快照后，记录在一个微型的文件系统中。每次提交更新时，它会纵览一遍所有文件的指纹信息并对文件作一快照，然后保存一个指向这次快照的索引。为提高性能，若文件没有变化，Git 不会再次保存，而只对上次保存的快照作一链接</li>
-</ul>
-</li>
-<li>近乎所有的操作都是本地执行</li>
-<li>时刻保持数据的完整性
-<ul>
-<li>在保存到 Git 之前，所有数据都要进行内容的<strong>校验和</strong>（checksum）计算，并将此结果作为数据的唯一标识和索引</li>
-<li>Git 使用 SHA-1 算法计算数据的校验和，通过对文件的内容或目录的结构计算出一个 SHA-1 哈希值，作为指纹字符串。该字串由 40 个十六进制字符（0-9 及 a-f）组成。<em><strong>所有保存在 Git 数据库中的东西都是用此哈希值来作索引的，而不是靠文件名</strong></em></li>
-</ul>
-</li>
-<li>多数操作仅添加数据</li>
-</ul>
-<h2 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h2>
+              <h1 id="mysql函数"><a class="markdownIt-Anchor" href="#mysql函数"></a> MySQL函数</h1>
+<h2 id="常用函数"><a class="markdownIt-Anchor" href="#常用函数"></a> 常用函数</h2>
+<blockquote>
+<p>以下示例中具体数字都可以用字段表示</p>
+</blockquote>
+<h3 id="数学运算"><a class="markdownIt-Anchor" href="#数学运算"></a> 数学运算</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-built_in">abs</span>(<span class="hljs-number">-8</span>)			<span class="hljs-comment">-- 绝对值</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">ceiling</span>(<span class="hljs-number">8.3</span>)		<span class="hljs-comment">-- 向上取整</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">floor</span>(<span class="hljs-number">8.3</span>)		<span class="hljs-comment">-- 向下取整</span><br><span class="hljs-keyword">select</span> rand()			<span class="hljs-comment">-- 返回一个0-1之间的随机数</span><br><span class="hljs-keyword">select</span> sing(<span class="hljs-number">-10</span>)		<span class="hljs-comment">-- 判断一个数的符号，负数返回-1、正数返回1</span><br></code></pre></td></tr></table></figure>
+<h3 id="字符串操作"><a class="markdownIt-Anchor" href="#字符串操作"></a> 字符串操作</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">char_length</span>(<span class="hljs-string">&#x27;xxxx&#x27;</span>)					<span class="hljs-comment">-- 显示字符串的长度</span><br><span class="hljs-keyword">select</span> concat(<span class="hljs-string">&#x27;姓名&#x27;</span>，name)			  	  <span class="hljs-comment">-- 拼接字符串</span><br><span class="hljs-keyword">select</span> <span class="hljs-keyword">insert</span>(<span class="hljs-string">&#x27;my name&#x27;</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;your&#x27;</span>)			<span class="hljs-comment">-- 在某个位置开始替换掉一定长度内原来的字符 示例结果：youry name</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">lower</span>(<span class="hljs-string">&#x27;Name&#x27;</span>)				<span class="hljs-comment">-- 大写转小写</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">upper</span>(<span class="hljs-string">&#x27;Name&#x27;</span>)				<span class="hljs-comment">-- 小写转大写</span><br><span class="hljs-keyword">select</span> instr(<span class="hljs-string">&#x27;MySQL&#x27;</span>，<span class="hljs-string">&#x27;SQL&#x27;</span>)			<span class="hljs-comment">-- 返回第一次出现字串的索引(注意不是下标),不存在就返回0</span><br><span class="hljs-keyword">select</span> replace(<span class="hljs-string">&#x27;MySQL learn&#x27;</span>,<span class="hljs-string">&#x27;learn&#x27;</span>,<span class="hljs-string">&#x27;study&#x27;</span>)	<span class="hljs-comment">-- 替换指定的字符串</span><br><span class="hljs-keyword">select</span> substr(<span class="hljs-string">&#x27;MySQL learn&#x27;</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>)	<span class="hljs-comment">-- 截取指定的字符串（源字符串，截取的位置，截取的长度)</span><br><span class="hljs-keyword">select</span> reverse(<span class="hljs-string">&#x27;MySQL learn&#x27;</span>)		<span class="hljs-comment">-- 翻转字符串</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>
-<p>Linux：直接用命令行安装</p>
-</li>
-<li>
-<p>Win：在官网下载安装程序，并配置机器名字和地址</p>
-</li>
-<li>
-<p>具体操作互联网搜索即可</p>
-</li>
-<li>
-<p>第一次安装需要配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;xxx&quot;<br>git config --global user.email &quot;email@example.com&quot;<br></code></pre></td></tr></table></figure>
+<p><code>instr</code>不区分大小写</p>
+<blockquote>
+<p>mysql 进行模糊查询时，可使用内部函数 instr，替代传统的 like 方式，并且速度更快。</p>
+<p><code>select * from book where instr(bookName,'经')&gt;0</code></p>
+</blockquote>
 </li>
 </ul>
-<h2 id="版本库"><a class="markdownIt-Anchor" href="#版本库"></a> 版本库</h2>
-<ul>
-<li>版本库（<em>repository</em>)：可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”</li>
-<li>工作目录下面的所有文件都不外乎这两种状态：已跟踪或未跟踪。
-<ul>
-<li>已跟踪的文件是指本来就被纳入版本控制管理的文件，在上次快照中有它们的记录，工作一段时间后，它们的状态可能是未更新，已修改或者已放入暂存区。</li>
-<li>而所有其他文件都属于未跟踪文件。它们既没有上次更新时的快照，也不在当前的暂存区域</li>
-</ul>
-</li>
-</ul>
-<h3 id="操作过程"><a class="markdownIt-Anchor" href="#操作过程"></a> 操作过程</h3>
-<ul>
-<li><code>git init</code>：在指定目录中使用，可以将该目录变成Git可以管理的仓库
-<ul>
-<li>会在该目录下生成一个<code>.git</code>目录，是Git用来跟踪管理版本库的，一般不需改动</li>
-<li>该仓库是一个本地仓库</li>
-</ul>
-</li>
-<li><code>git add xxx</code>：把位于指定目录的文件添加到仓库</li>
-<li><code>git commit -m &quot;xxx&quot;</code>：将文件提交到仓库
-<ul>
-<li>一次commit会将之前所有的add都会提交</li>
-<li><code>-a</code>，自动将所有已跟踪的文件暂存起来一并提交</li>
-</ul>
-</li>
-</ul>
-<p><strong>扩展阅读</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://baike.so.com/doc/5903265-6116166.html">百科-版本控制</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wx1993/p/7680877.html">集中式（SVN）和分布式（Git）版本控制系统的简单比较</a></li>
-</ul>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>diff 命令比较文本文件,它能比较单个文件或者目录内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn3" class="footnote-item"><p>每个人都可以创建一个独立的代码仓库用于管理，各种版本控制的操作都可以在本地完成。每个人修改的代码都可以推送合并到另外一个代码仓库中 <a href="#fnref3" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
+<h3 id="时间和日期函数"><a class="markdownIt-Anchor" href="#时间和日期函数"></a> 时间和日期函数</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-built_in">current_date</span>()		<span class="hljs-comment">-- 查询当前的日期</span><br><span class="hljs-keyword">select</span> now()			<span class="hljs-comment">-- 查询当前的时间（月份+时间）</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">localtime</span>()		<span class="hljs-comment">-- 获取本地时间</span><br><span class="hljs-keyword">select</span> sysdate()		<span class="hljs-comment">-- 获取系统时间</span><br><br><span class="hljs-keyword">select</span> <span class="hljs-keyword">year</span><span class="hljs-operator">/</span><span class="hljs-keyword">month</span><span class="hljs-operator">/</span><span class="hljs-keyword">day</span><span class="hljs-operator">/</span><span class="hljs-keyword">hour</span><span class="hljs-operator">/</span><span class="hljs-keyword">minute</span><span class="hljs-operator">/</span><span class="hljs-keyword">second</span>(now())<br></code></pre></td></tr></table></figure>
+<h3 id="系统函数"><a class="markdownIt-Anchor" href="#系统函数"></a> 系统函数</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">user</span>()	<span class="hljs-comment">-- 显示当前用户</span><br><span class="hljs-keyword">select</span> version()	<span class="hljs-comment">-- 显示mysql版本信息</span><br></code></pre></td></tr></table></figure>
+<h2 id="聚合函数"><a class="markdownIt-Anchor" href="#聚合函数"></a> 聚合函数</h2>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count()</td>
+<td></td>
+</tr>
+<tr>
+<td>sum()</td>
+<td></td>
+</tr>
+<tr>
+<td>avg()</td>
+<td></td>
+</tr>
+<tr>
+<td>max()</td>
+<td></td>
+</tr>
+<tr>
+<td>min()</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Q: count(*)、count(字段名)、count(1)区别？</p>
+<p>A: count(字段名)会忽略对应字段的空值，其余两个不会忽略</p>
+<p><strong>count(字段名)效率更快</strong></p>
+</blockquote>
+<h2 id="数据库级别的md5扩展"><a class="markdownIt-Anchor" href="#数据库级别的md5扩展"></a> 数据库级别的MD5（扩展）</h2>
+<p>MD5: <strong>信息摘要算法</strong>,主要增强算法复杂度和不可逆</p>
+<blockquote>
+<p>具体值的md5是一样的</p>
+</blockquote>
+<p><strong>函数md5(未加密数据)</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 示例</span><br>update testmd5 <span class="hljs-keyword">set</span> pwd<span class="hljs-operator">=</span>md5(pwd) <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> testmd5 <span class="hljs-keyword">values</span>(<span class="hljs-number">5</span>,md5(<span class="hljs-string">&#x27;12345&#x27;</span>))<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Q: 如何校验用户输入的密码是否正确？</p>
+<p>A: 将用户的密码先用md5加密后，再去对比加密后的密文是否相同即可</p>
+</blockquote>
 
             </div>
             <hr>
@@ -365,7 +333,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Git%E5%AD%A6%E4%B9%A0/">Git学习</a>
+                      <a class="hover-with-bg" href="/categories/MySql%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">MySql基础学习</a>
                     
                   </div>
                 
@@ -373,7 +341,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                      <a class="hover-with-bg" href="/tags/MySql/">MySql</a>
                     
                   </div>
                 
@@ -390,15 +358,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
+                      <a href="/2021/10/01/7.%E4%BA%8B%E5%8A%A1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2.本地仓库</span>
+                        <span class="hidden-mobile">7.事务</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/10/01/5.MySQL%E6%95%B0%E6%8D%AE%E5%BA%93DQL%E6%93%8D%E4%BD%9C/">
+                        <span class="hidden-mobile">5.MySQL数据库DQL操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -420,7 +394,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'e55a0edc0489c5b5e1f7a3b4df5bfd6f'
+            id: 'aefa9ad4c5ac8ac390369f6b7320f131'
           }
         )
         var gitalk = new Gitalk(options);

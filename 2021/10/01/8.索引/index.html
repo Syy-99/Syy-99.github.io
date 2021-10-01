@@ -18,7 +18,7 @@
   <meta name="author" content="shen yayu">
   <meta name="keywords" content="">
   
-  <title>1.Git简介 - Blog For Everything</title>
+  <title>18.索引 - Blog For Everything</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="1.Git简介">
+            <span class="h2" id="subtitle" title="18.索引">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-27 08:48" pubdate>
-        2021年7月27日 早上
+      <time datetime="2021-10-01 22:39" pubdate>
+        2021年10月1日 晚上
       </time>
     </span>
   
@@ -198,7 +198,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.8k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      19
        分钟
     </span>
   
@@ -246,7 +246,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">1.Git简介</h1>
+            <h1 style="display: none">18.索引</h1>
             
               <p class="note note-info">
                 
@@ -255,107 +255,203 @@
               </p>
             
             <div class="markdown-body">
-              <h1 id="git简介"><a class="markdownIt-Anchor" href="#git简介"></a> Git简介</h1>
-<h2 id="git起源"><a class="markdownIt-Anchor" href="#git起源"></a> Git起源</h2>
+              <h1 id="索引"><a class="markdownIt-Anchor" href="#索引"></a> 索引</h1>
+<h2 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h2>
 <ul>
-<li>在2002年以前，世界各地的志愿者把源代码文件通过==diff<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>==的方式发给Linus，然后由Linus本人通过手工方式合并代码</li>
-<li>到了2002年,Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统</li>
-<li>2005,Linux社区牛人试图破解BitKeeper的协议，BitMover公司要收回Linux社区的免费使用权</li>
-<li>Linus花了两周时间自己用C写了一个分布式版本控制系统——Git！一个月之内，Linux系统的源码已经由Git管理了</li>
+<li>MySQL官方对索引的定义：索引是帮助MySQL获取数据的<strong>数据结构</strong></li>
 </ul>
-<p><img src="/2021/07/27/1.Git%E7%AE%80%E4%BB%8B/..%5Cimg%5Cgit.png" srcset="/img/loading.gif" lazyload alt="git"></p>
-<h2 id="版本控制系统"><a class="markdownIt-Anchor" href="#版本控制系统"></a> 版本控制系统<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></h2>
+<h2 id="分类"><a class="markdownIt-Anchor" href="#分类"></a> 分类</h2>
+<h3 id="主键索引primary-key"><a class="markdownIt-Anchor" href="#主键索引primary-key"></a> 主键索引(primary key)</h3>
 <ul>
-<li>集中式：
+<li>主键的列值唯一、不可为空</li>
+<li>唯一的标识，只能有一个列作为主键</li>
+</ul>
+<h3 id="唯一索引unique-key"><a class="markdownIt-Anchor" href="#唯一索引unique-key"></a> 唯一索引(unique key)</h3>
 <ul>
-<li>集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。</li>
-<li>集中式版本控制系统最大的毛病就是必须联网才能工作，受限于网速</li>
+<li>索引的列值必须唯一，可以为空</li>
+<li>多个列都可以设置为唯一索引</li>
 </ul>
-</li>
-<li>分布式：
+<blockquote>
+<p>如果是组合索引，则列值的组合必须唯一</p>
+</blockquote>
+<h3 id="常规索引keyindex"><a class="markdownIt-Anchor" href="#常规索引keyindex"></a> 常规索引(key/index)</h3>
 <ul>
-<li>分布式版本控制系统没有“中央服务器”，每个人的电脑上都是一个完整的版本库，工作的时候，就不需要联网</li>
-<li>个人的对库文件的修改只需通过局域网推送给对方即可看到</li>
-<li>分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已</li>
+<li>最基本的索引，不具备唯一性，仅加快查询速度。</li>
 </ul>
-</li>
-<li>Git是目前世界上最先进的<mark>分布式版本控制系统<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></mark></li>
-</ul>
-<h2 id="git-特性"><a class="markdownIt-Anchor" href="#git-特性"></a> Git 特性</h2>
+<h3 id="全文索引fulltext"><a class="markdownIt-Anchor" href="#全文索引fulltext"></a> 全文索引(FullText)</h3>
 <ul>
-<li>直接记录快照、而非差异比较
+<li>在特定的数据库引擎才有</li>
+<li>快速定位数据</li>
+</ul>
+<blockquote>
+<p>是目前搜索引擎使用的一种关键技术。它能够利用多种算法智能分析出文本文字中关键词的频率和重要性，然后按照一定的算法规则智能筛选出想要的结果。3.2开始支持全文索引，但无法正确支持中文；5.7.6开始内置ngram全文检索插件，用来支持中文。</p>
+<p>旧版的全文索引只能用在MyISAM数据库引擎的表上，但5.6.24上InnoDB也加入了全文索引。不够只支持char、varchar和text的字段类型。</p>
+</blockquote>
+<p></p>
+<h2 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h2>
+<h3 id="创建表时给字段增加索引"><a class="markdownIt-Anchor" href="#创建表时给字段增加索引"></a> 创建表时给字段增加索引</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">primary</span> key xx()<br><span class="hljs-keyword">unique</span> key xx()<br>key xx()<br></code></pre></td></tr></table></figure>
+<h3 id="创建完毕后增加索引"><a class="markdownIt-Anchor" href="#创建完毕后增加索引"></a> 创建完毕后增加索引</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">add</span> fulltext index 索引名(列名)		<span class="hljs-comment">-- 添加全文索引</span><br><br><span class="hljs-comment">---------------</span><br><span class="hljs-keyword">create</span> 索引类型 <span class="hljs-keyword">on</span> 表名(列名)	<span class="hljs-comment">--  </span><br></code></pre></td></tr></table></figure>
+<h3 id="显示表所有的索引信息"><a class="markdownIt-Anchor" href="#显示表所有的索引信息"></a> 显示表所有的索引信息</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> index <span class="hljs-keyword">from</span> 表名		<span class="hljs-comment">-- 显示表中所有索引信息</span><br></code></pre></td></tr></table></figure>
+<h2 id="索引原则"><a class="markdownIt-Anchor" href="#索引原则"></a> 索引原则</h2>
 <ul>
-<li>Git 只关心文件数据的整体是否发生变化，而大多数其他系统则只关心文件内容的具体差异</li>
-<li>实际上，Git 更像是把变化的文件作快照后，记录在一个微型的文件系统中。每次提交更新时，它会纵览一遍所有文件的指纹信息并对文件作一快照，然后保存一个指向这次快照的索引。为提高性能，若文件没有变化，Git 不会再次保存，而只对上次保存的快照作一链接</li>
+<li>索引不是越多越好</li>
+<li>不要对经常变动的数据加索引</li>
+<li>小数据量的表不需要加索引</li>
+<li>索引一般加在常用来查询的字段上</li>
 </ul>
-</li>
-<li>近乎所有的操作都是本地执行</li>
-<li>时刻保持数据的完整性
-<ul>
-<li>在保存到 Git 之前，所有数据都要进行内容的<strong>校验和</strong>（checksum）计算，并将此结果作为数据的唯一标识和索引</li>
-<li>Git 使用 SHA-1 算法计算数据的校验和，通过对文件的内容或目录的结构计算出一个 SHA-1 哈希值，作为指纹字符串。该字串由 40 个十六进制字符（0-9 及 a-f）组成。<em><strong>所有保存在 Git 数据库中的东西都是用此哈希值来作索引的，而不是靠文件名</strong></em></li>
-</ul>
-</li>
-<li>多数操作仅添加数据</li>
-</ul>
-<h2 id="安装git"><a class="markdownIt-Anchor" href="#安装git"></a> 安装Git</h2>
-<ul>
-<li>
-<p>Linux：直接用命令行安装</p>
-</li>
-<li>
-<p>Win：在官网下载安装程序，并配置机器名字和地址</p>
-</li>
-<li>
-<p>具体操作互联网搜索即可</p>
-</li>
-<li>
-<p>第一次安装需要配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global user.name &quot;xxx&quot;<br>git config --global user.email &quot;email@example.com&quot;<br></code></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="版本库"><a class="markdownIt-Anchor" href="#版本库"></a> 版本库</h2>
-<ul>
-<li>版本库（<em>repository</em>)：可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”</li>
-<li>工作目录下面的所有文件都不外乎这两种状态：已跟踪或未跟踪。
-<ul>
-<li>已跟踪的文件是指本来就被纳入版本控制管理的文件，在上次快照中有它们的记录，工作一段时间后，它们的状态可能是未更新，已修改或者已放入暂存区。</li>
-<li>而所有其他文件都属于未跟踪文件。它们既没有上次更新时的快照，也不在当前的暂存区域</li>
-</ul>
-</li>
-</ul>
-<h3 id="操作过程"><a class="markdownIt-Anchor" href="#操作过程"></a> 操作过程</h3>
-<ul>
-<li><code>git init</code>：在指定目录中使用，可以将该目录变成Git可以管理的仓库
-<ul>
-<li>会在该目录下生成一个<code>.git</code>目录，是Git用来跟踪管理版本库的，一般不需改动</li>
-<li>该仓库是一个本地仓库</li>
-</ul>
-</li>
-<li><code>git add xxx</code>：把位于指定目录的文件添加到仓库</li>
-<li><code>git commit -m &quot;xxx&quot;</code>：将文件提交到仓库
-<ul>
-<li>一次commit会将之前所有的add都会提交</li>
-<li><code>-a</code>，自动将所有已跟踪的文件暂存起来一并提交</li>
-</ul>
-</li>
-</ul>
-<p><strong>扩展阅读</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://baike.so.com/doc/5903265-6116166.html">百科-版本控制</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wx1993/p/7680877.html">集中式（SVN）和分布式（Git）版本控制系统的简单比较</a></li>
-</ul>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>diff 命令比较文本文件,它能比较单个文件或者目录内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>一种软体工程技巧，籍以在开发的过程中，确保由不同人所编辑的同一档案都得到更新。版本控制透过文档控制(documentation control)记录程序各个模组的改动，并为每次改动编上序号 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn3" class="footnote-item"><p>每个人都可以创建一个独立的代码仓库用于管理，各种版本控制的操作都可以在本地完成。每个人修改的代码都可以推送合并到另外一个代码仓库中 <a href="#fnref3" class="footnote-backref">↩︎</a></p>
-</li>
+<h2 id="explain简介拓展"><a class="markdownIt-Anchor" href="#explain简介拓展"></a> explain简介（拓展）</h2>
+<p><strong>explain模拟优化器执行SQL语句</strong>，在5.6以及以后的版本中，<code>select update delete insert</code>均可用，从而知道mysql是如何处理sql语句，分析查询语句或者表结构的性能瓶颈。</p>
+<h3 id="作用"><a class="markdownIt-Anchor" href="#作用"></a> 作用</h3>
+<ol>
+<li>表的读取顺序</li>
+<li>数据读取操作的操作类型</li>
+<li>哪些索引可以使用</li>
+<li>哪些索引被实际使用</li>
+<li>表之间的引用</li>
+<li>每张表有多少行被优化器查询</li>
 </ol>
-</section>
+<h3 id="用法"><a class="markdownIt-Anchor" href="#用法"></a> 用法</h3>
+<p><strong>explain+SQL语句</strong></p>
+<ul>
+<li>执行计划包含的信息：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>信息</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>查询的序号，包含一组数字，表示查询中执行select子句或操作表的顺序</td>
+</tr>
+<tr>
+<td>select_type</td>
+<td>查询类型，主要用于区别普通查询，联合查询，子查询等的复杂查询</td>
+</tr>
+<tr>
+<td>table</td>
+<td>输出的行所引用的表</td>
+</tr>
+<tr>
+<td>type</td>
+<td>显示联结类型，显示查询使用了何种类型，按照从最佳到最坏类型排序</td>
+</tr>
+<tr>
+<td>possible_keys</td>
+<td>指出MySQL能使用哪个索引在该表中找到行</td>
+</tr>
+<tr>
+<td>key</td>
+<td>显示MySQL实际决定使用的键(索引)</td>
+</tr>
+<tr>
+<td>key_len</td>
+<td>表示索引中使用的字节数</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>显示索引的哪一列被使用了，如果有可能是一个常数，哪些列或常量被用于查询索引列上的值</td>
+</tr>
+<tr>
+<td><strong>rows</strong></td>
+<td>根据表统计信息以及索引选用情况，大致估算出找到所需的记录所需要读取的行数</td>
+</tr>
+<tr>
+<td>Extra</td>
+<td>包含不适合在其他列中显示，但是十分重要的额外信息</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>**id：**id相同，执行顺序从上往下；id不同，id值越大，优先级越高，越先执行</p>
+</li>
+<li>
+<p><strong>select_type</strong>：</p>
+<ul>
+<li>simple ——简单的select查询，查询中不包含子查询或者UNION</li>
+<li>primary ——查询中若包含任何复杂的子部分，最外层查询被标记</li>
+<li>subquery——在select或where列表中包含了子查询</li>
+<li>derived——在from列表中包含的子查询被标记为derived（衍生），MySQL会递归执行这些子查询，把结果放到临时表中</li>
+<li>union——如果第二个select出现在UNION之后，则被标记为UNION，如果union包含在from子句的子查询中，外层select被标记为derived</li>
+<li>union result: UNION 的结果</li>
+</ul>
+</li>
+<li>
+<p><strong>type</strong>:</p>
+<ul>
+<li>
+<p>system：表中仅有一行（=系统表）这是const联结类型的一个特例。</p>
+</li>
+<li>
+<p>const：表示通过索引一次就找到，const用于比较primary key或者unique索引。因为只匹配一行数据，所以如果将主键置于where列表中，mysql能将该查询转换为一个常量</p>
+</li>
+<li>
+<p>eq_ref:唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于唯一索引或者主键扫描</p>
+</li>
+<li>
+<p>ref:非唯一性索引扫描，返回匹配某个单独值的所有行，本质上也是一种索引访问，它返回所有匹配某个单独值的行，可能会找多个符合条件的行，属于查找和扫描的混合体</p>
+</li>
+<li>
+<p>range:只检索给定范围的行，使用一个索引来选择行。key列显示使用了哪个索引，一般就是where语句中出现了between,in等范围的查询。这种范围扫描索引扫描比全表扫描要好，因为它开始于索引的某一个点，而结束另一个点，不用全表扫描</p>
+</li>
+<li>
+<p>index:index 与all区别为index类型只遍历索引树。通常比all快，因为索引文件比数据文件小很多。</p>
+</li>
+<li>
+<p>all：遍历全表以找到匹配的行</p>
+</li>
+</ul>
+<blockquote>
+<p>注意:一般保证查询至少达到range级别，最好能达到ref。\</p>
+</blockquote>
+</li>
+<li>
+<p><strong>key</strong>: 如果没有选择索引,键是NULL。查询中如果使用覆盖索引，则该索引和查询的select字段重叠。</p>
+</li>
+<li>
+<p><strong>key_length</strong>: 该列计算查询中使用的索引的长度在不损失精度的情况下，长度越短越好。</p>
+<p>​					 如果键是NULL,则长度为NULL。该字段显示为索引字段的最大可能长度，并非实际使用长度。</p>
+</li>
+<li>
+<p><strong>Extra</strong>:</p>
+<ul>
+<li>
+<p>Using filesort：说明mysql会对数据适用一个外部的索引排序。而不是按照表内的索引顺序进行读取。MySQL中无法利用索引完成排序操作称为“文件排序”</p>
+</li>
+<li>
+<p>Using temporary: 使用了临时表保存中间结果。mysql在查询结果排序时使用临时表，常见于排序order by和分组查询group by</p>
+</li>
+<li>
+<p>Using index: 表示相应的select操作用使用覆盖索引，避免访问了表的数据行。</p>
+<p>​					如果同时出现using where，表名索引被用来执行索引键值的查找；如果没有同时出现using where，表名索引用来读取数据而非执行查询动作。</p>
+</li>
+<li>
+<p>Using where : 表明使用where过滤</p>
+</li>
+<li>
+<p>using join buffer: 使用了连接缓存</p>
+</li>
+<li>
+<p>impossible where: where子句的值总是false，不能用来获取任何元组</p>
+</li>
+<li>
+<p>select tables optimized away：在没有group by子句的情况下，基于索引优化Min、max操作或者对于MyISAM存储引擎优化count（*），不必等到执行阶段再进行计算，查询执行计划生成的阶段即完成优化</p>
+</li>
+<li>
+<p>distinct：优化distinct操作，在找到第一匹配的元组后即停止找同样值的动作。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="索引的数据结构扩展"><a class="markdownIt-Anchor" href="#索引的数据结构扩展"></a> 索引的数据结构（扩展）</h2>
+<p>阅读：<a target="_blank" rel="noopener" href="https://blog.codinglabs.org/articles/theory-of-mysql-index.html">https://blog.codinglabs.org/articles/theory-of-mysql-index.html</a></p>
 
             </div>
             <hr>
@@ -365,7 +461,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Git%E5%AD%A6%E4%B9%A0/">Git学习</a>
+                      <a class="hover-with-bg" href="/categories/MySql%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">MySql基础学习</a>
                     
                   </div>
                 
@@ -373,7 +469,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                      <a class="hover-with-bg" href="/tags/MySql/">MySql</a>
                     
                   </div>
                 
@@ -390,15 +486,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/2.%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93/">
+                      <a href="/2021/10/01/9.%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2.本地仓库</span>
+                        <span class="hidden-mobile">9.权限管理和备份</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/10/01/7.%E4%BA%8B%E5%8A%A1/">
+                        <span class="hidden-mobile">7.事务</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -420,7 +522,7 @@
         var options = Object.assign(
           {"clientID":"c788c4fa91aa33113663","clientSecret":"a9049f6611cfe36fd1fb9906a6e7de40c87b6aff","repo":"Syy-99.github.io","owner":"Syy-99","admin":"Syy-99","language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'e55a0edc0489c5b5e1f7a3b4df5bfd6f'
+            id: '333e6cacfaa7b266b94783fa0594a696'
           }
         )
         var gitalk = new Gitalk(options);
